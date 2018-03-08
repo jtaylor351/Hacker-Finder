@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var HackathonSchema = new mongoose.Schema({
-    name: {
+    title: {
         type: String,
         unique: true,
         required: true,
@@ -15,20 +15,27 @@ var HackathonSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
+    startDay: {
+        type: Number,
+        required: true,
+    },
+    month: {
+        type: Number,
+        required: true,
+    },
     year: {
         type: Number,
         required: true,
-    }
+    },
+    length: {
+        type: Number,
+        required: true,
+    },
     universityHost: {
         type: String,
         required: true,
         trim: true
-    },
-    skills: {
-        type: [String],
-        required: false
     }
-
 });
 
 
