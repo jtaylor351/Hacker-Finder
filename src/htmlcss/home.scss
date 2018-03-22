@@ -1,0 +1,88 @@
+/*Home screen scss*/
+@import "variables";
+
+body {
+	margin: 0px;
+	.home-scrn {
+		font-family: $main-font;
+		height: 96vh;
+		background-image: url("hackers.jpg");
+		background-size: cover;
+		//background-color: $cream;
+		display: flex;
+		justify-content: center;
+		color: white;
+		background-attachment: fixed;
+	    background-position: center;
+	    background-repeat: no-repeat;
+	    background-size: cover;
+		.home-content {
+			height: 86vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			button {
+				background-color: transparent;
+				border: 3px solid white;
+				height: 40px;
+				width: 120px;
+				align-self: center;
+				font-size: 14px;
+				outline: none;
+				color: white;
+			}
+			button:hover {
+				background-color: white;
+				color: black;
+			}
+		}
+	}
+	.about {
+		font-family: $main-font;
+		height: 60vh;
+		background-color: $maroon;
+		display: flex;
+		justify-content: center;
+		color: #FFFFFF;
+		.about-content {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-content: center;
+			width: 80%;
+			//create an @media command here
+			.abt {
+				text-align: center;
+				margin: 40px;
+				padding: 20px;
+				width: 23%;
+				align-self: center;
+				border: 3px solid white;
+				border-radius: 5px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: space-evenly;
+				.abt-icon {
+					margin-top: 20px;
+					border-radius: 50%;
+					height: 120px;
+					width: 120px;
+					margin-bottom: 20px;
+				}
+			}
+		}
+	}
+	.footer {
+		font-family: $main-font;
+		text-align: center;
+		padding: 50px;
+		color: white;
+		background-image: url("hackers.jpg");
+		background-size: cover;
+		background-attachment: fixed;
+	    background-position: center;
+	    background-repeat: no-repeat;
+	    background-size: cover;
+	}
+}

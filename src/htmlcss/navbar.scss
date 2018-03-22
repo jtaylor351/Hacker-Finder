@@ -1,0 +1,58 @@
+/*navbar scss*/
+@import "variables";
+
+body {
+	margin: 0px;
+	.nav-container {
+		background-color: $red;
+		height: 60px;
+		width: 100%;
+		display: flex;
+		font-size: 20px;
+		font-family: $main-font;
+		.left-cont {
+			justify-content: flex-start;
+			width: 50%;
+			margin: 0px;
+			display: flex;
+			img {
+				height: 40px;
+				margin-top: 10px;
+				width: 80px;
+				margin-left: 20px;
+			}
+			a {
+				margin-left: 20px;
+				margin-top: 18px;
+				color: #FFFFFF;
+				text-decoration: none;
+			}
+			a:hover {
+				color: $cream;
+			}
+		}
+		.right-cont {
+			justify-content: flex-end;
+			display: flex;
+			width: 50%;
+			margin: 0px;
+			button {
+				outline: none;
+				justify-content: flex-end;
+				height: 34px;
+				width: 100px;
+				margin-top: 13px;
+				margin-right: 20px;
+				background-color: $red;
+				border: 3px solid #FFFFFF;
+				color: #FFFFFF;
+				font-size: 13px;
+			}
+
+			button:hover {
+				background-color: #FFFFFF;
+				color: $red;
+			}
+		}
+	}
+}

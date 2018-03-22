@@ -1,0 +1,53 @@
+/*myHacks scss file*/
+@import "variables";
+
+body {
+	margin: 10px;
+	.container {
+		font-family: $main-font;
+		padding: 10px;
+		display: flex;
+		justify-content: center;
+		width: 20%;
+		height: 100px;
+		border: 3px solid black;
+		border-radius: 5px;
+		.hack-img {
+			display: flex;
+			margin-right: 40px;
+			img {
+				align-self: center;
+				height: 80px;
+				width: 80px;
+				border-radius: 50%;
+			}
+		}
+		.hack-info {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			align-items: center;
+			.hack-name {
+				text-align: center;
+				h3 {
+
+				}
+			}
+			.info-btn {
+				button {
+					height: 40px;
+					width: 100px;
+					background-color: $maroon;
+					color: white;
+					border: 0px;
+					margin-bottom: 15px;
+				}
+				button:hover {
+					background-color: white;
+					color: $maroon;
+					border: 3px solid $maroon;
+				}
+			}
+		}
+	}
+}

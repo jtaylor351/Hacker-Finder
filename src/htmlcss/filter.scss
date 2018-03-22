@@ -1,0 +1,70 @@
+/*Filter scss */
+
+@import "variables";
+
+body {
+	margin: 10px;
+	font-family: $main-font;
+	.container {
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		border: 3px solid black;
+		border-radius: 5px;
+		width: 40%;
+		height: 100px;
+		.label {
+			text-align: center;
+		}
+		.filters {
+			display: flex;
+			justify-content: space-evenly;
+			align-items: flex-start;
+			margin-top: 90px;
+			font-size: 15px;
+			.filter-set {
+				.dropbtn {
+					border: 4px solid black;
+					background-color: white;
+					height: 50px;
+					width: 100px;
+					margin-right: 25px;
+					margin-bottom: 5px;
+					font-size: 15px;
+					outline: none;
+				}
+				.dropbtn:hover {
+					background-color: black;
+					border: 0px;
+					color: white;
+				}
+				.dropdown-content {
+					display: flex;
+					flex-direction: column;
+					background-color: white;
+					border: 1px solid black;
+					width: 98px;
+					text-align: center;
+					justify-content: center;
+					a {
+						color: black;
+						text-decoration: none;
+						height: 30px;
+						width: 98px;
+					}
+					a:hover {
+						background-color: black;
+						color: white;
+					}
+				}
+				#drop1 {
+					display: none;
+				}
+				#filt1:hover #drop1{
+					display:block;
+				}
+
+			}
+		}
+	}
+}

@@ -1,0 +1,23 @@
+/*Signup scss file*/
+@import "variables";
+
+body {
+	margin: 10px;
+	font-family: $main-font;
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: $mint;
+		height: 95vh;
+		width: 100vw;
+		margin-right: none;
+		form {
+			height: 70%;
+			width: 50%;
+			border: 3px solid white;
+			border-radius: 5px;
+		}
+	}
+}
