@@ -1,3 +1,54 @@
-<p>
-  sign-up-component works!
-</p>
+<div class="container mt-5">
+    <div class="col-md-4 mx-auto">
+        <form [formGroup]="signupForm" (ngSubmit)="onSignup()" novalidate>
+
+            <div class="form-group">
+                <label for="firstName">Enter First Name:</label>
+                <input type="text" id="firstName" class="form-control" formControlName="firstName">
+                <small [hidden]="signupForm.controls.firstName.valid || !signupForm.controls.firstName.dirty" class="text-danger">
+                Invalid first name
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Enter Last Name:</label>
+                <input type="text" id="lastName" class="form-control" formControlName="lastName">
+                <small [hidden]="signupForm.controls.lastName.valid || !signupForm.controls.lastName.dirty" class="text-danger">
+                Invalid last name
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Enter Email:</label>
+                <input type="email" id="email" class="form-control" formControlName="email">
+                <small [hidden]="signupForm.controls.email.valid  || !signupForm.controls.email.dirty" class="text-danger">
+                Invalid email address
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" class="form-control" formControlName="password">
+                <small [hidden]="signupForm.controls.password.valid || !signupForm.controls.password.dirty" class="text-danger">
+                Invalid password
+                </small>
+            </div>
+
+
+            <div class="form-group">
+                <label for="password">Re-enter Password:</label>
+                <input type="password" id="re_password" class="form-control" formControlName="re_password">
+                <small [hidden]="signupForm.controls.re_password.valid || !signupForm.controls.re_password.dirty" class="text-danger">
+                Invalid re-entered password
+                </small>
+            </div>
+
+            <button type="submit" value="submit" class="btn btn-block btn-primary" [disabled]="!signupForm.valid">Sign Up</button>
+            <small [hidden]="signupForm.valid" class="text-danger">
+                Not valid yet... make sure your passwords match!
+            </small>
+
+        </form>
+
+    </div>
+</div>
