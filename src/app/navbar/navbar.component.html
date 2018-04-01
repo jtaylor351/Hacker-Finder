@@ -10,12 +10,12 @@
 <body>
     <div class="nav-container">
         <div class="left-cont">
-            <img class="icon" src="">
+            <img class="icon" src="" [routerLink]="['']">
             <a class="about-link" href=""> About </a>
         </div>
         <div class="right-cont">
-            <button id="log-btn" class="nav-btn" href=""> LOGIN </button>
-            <button id="sign-btn" class="nav-btn" href=""> SIGN UP </button>
+            <button id="log-btn" class="nav-btn" [routerLink]="['user/login']"> LOGIN </button>
+            <button id="sign-btn" class="nav-btn" [routerLink]="['user/signup']"> SIGN UP </button>
         </div>
     </div>
 </body>
