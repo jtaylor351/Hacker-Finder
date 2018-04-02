@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
+const SCHOOLS = ["uga", "gatech"]; // const does not mean constant, just that variable can't be reasigned
+const SALT_ROUNDS = 10;
 
 var nameValidator = [
   validate({
@@ -34,6 +36,29 @@ var passValidator = [
   })
 ]
 
+var universityValidator = [
+    validate({
+        validator: function(val) {
+            val = val + '';
+            SCHOOLS.forEach(function(school){
+                if (val == school) {
+                    return true
+                }
+            });
+            return false
+        },
+        message: 'University must be either "uga" or "gatech"',
+    })
+]
+
+var bioValidator = [
+  validate({
+    validator: 'isLength',
+    arguments: [0, 2000],
+    message: 'Password should be between {ARGS[0]} and {ARGS[1]} characters',
+  })
+]
+
 var UserSchema = new mongoose.Schema({
     email: {
         type: String,
@@ -41,6 +66,11 @@ var UserSchema = new mongoose.Schema({
         trim: true,
         validator: emailValidator
 
+    },
+    password: {
+        type: String,
+        required: true,
+        validator: passValidator
     },
     firstName: {
         type: String,
@@ -54,33 +84,43 @@ var UserSchema = new mongoose.Schema({
         trim: true,
         validator: nameValidator
     },
-    password: {
+    university: {
         type: String,
         required: true,
-        validator: passValidator
+        trim: true,
+        validator: universityValidator
+    },
+    bio {
+        type: String,
+        required: false,
+        validator: bioValidator
     }
 });
 
 //authenticate input against database
-UserSchema.statics.authenticate = function (email, password, callback) {
-  User.findOne({ email: email })
-    .exec(function (err, user) {
-      if (err) {
-        return callback(err)
-      } else if (!user) {
-        var err = new Error('User not found.');
-        err.status = 401;
-        return callback(err);
-      }
-      bcrypt.compare(password, user.password, function (err, result) {
-        if (result === true) {
-          return callback(null, user);
-        } else {
-          return callback();
-        }
-      })
-    });
-}
+
+UserSchema.statics.authenticate = new Promise(function (email, password) {
+  User.findOne({ email: email }).exec()
+  .then(function (user) {
+        bcrypt.compare(password, user.password, function (err, result) {
+            if(err) {
+                console.log(err.message)
+                reject(err);
+            }
+            if (result === true) {
+                resolve(user);
+            }
+            var err = new Error('Invalid Password');
+            err.status = 401;
+            console.log(err.message);
+            reject(err);
+        });
+    })
+  .catch(function(err) {
+      console.log(err.message);
+      reject(err);
+  });
+});
 
 
 var User = mongoose.model('User', UserSchema);
