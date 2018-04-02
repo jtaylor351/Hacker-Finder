@@ -32,7 +32,7 @@ var router = express.Router();
 // });
 
 
-router.post('/login', function(req, res, next) {
+router.post('/', function(req, res, next) {
     console.log('LOGIN');
     User.authenticate(req.body.email, req.body.email)
     .then(function(user) {
@@ -55,7 +55,7 @@ router.post('/login', function(req, res, next) {
     });
 });
 
-router.get('/login', function(req, res, next) {
+router.get('/', function(req, res, next) {
     console.log('LOGIN');
     return res.status(200).json({
             title: 'Login stuff',
