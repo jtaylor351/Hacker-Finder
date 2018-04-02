@@ -1,10 +1,9 @@
-// var express = require('express');
-// var Guide = require('../../models/guide');
-// var bcrypt = require('bcryptjs');
-// var jwt = require('jsonwebtoken');
-// var User = require('../../models/user');
-// var mongoose = require('mongoose');
-// var router = express.Router();
+var express = require('express');
+var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
+var User = require('../models/user');
+var mongoose = require('mongoose');
+var router = express.Router();
 
 
 // router.post('/signup', function(req, res, next) {
@@ -34,6 +33,7 @@
 
 
 router.post('/login', function(req, res, next) {
+    console.log('LOGIN');
     User.authenticate(req.body.email, req.body.email)
     .then(function(user) {
         var token = jwt.sign({ user: User }, 'secret', { expiresIn: 7200 });
@@ -53,6 +53,33 @@ router.post('/login', function(req, res, next) {
             error: { message: err.message }
         });
     });
+});
+
+router.get('/login', function(req, res, next) {
+    console.log('LOGIN');
+    return res.status(200).json({
+            title: 'Login stuff',
+            error: { message: 'login in'}
+        });
+    // User.authenticate(req.body.email, req.body.email)
+    // .then(function(user) {
+    //     var token = jwt.sign({ user: User }, 'secret', { expiresIn: 7200 });
+    //     return res.status(200).json({
+    //         message: 'Successfully logged in',
+    //         token: token,
+    //         email: user.email,
+    //         university: user.university,
+    //         firstName: user.firstName,
+    //         lastName: user.lastName,
+    //         bio: user.bio
+    //     });
+    // })
+    // .catch(function(err) {
+    //     return res.status(err.status).json({
+    //         title: 'Login failed',
+    //         error: { message: err.message }
+    //     });
+    // });
 });
 
         // if (err) {

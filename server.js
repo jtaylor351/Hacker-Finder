@@ -6,10 +6,10 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 // Get our API routes
-const api = require('./server/routes/api');
-const guides = require('./server/routes/guides');
-const user = require('./server/routes/user');
-const create = require('./server/routes/create');
+const api = require('server/routes/api');
+// const guides = require('server/routes/guides');
+const user = require('server/routes/user');
+// const create = require('./server/routes/create');
 
 const app = express();
 mongoose.Promise = global.Promise;
@@ -36,9 +36,8 @@ app.use(function(req, res, next) {
 // Set our api routes
 app.use('/', api);
 
-app.use(function(req, res, next) {
-    return res.render('index');
-});
+
+app.use('/login', user);
 
 /**
  * Get port from environment and store in Express.
