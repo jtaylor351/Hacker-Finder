@@ -1,32 +1,63 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
+
+var nameValidator = [
+  validate({
+    validator: 'isLength',
+    arguments: [2, 50],
+    message: 'Name should be between {ARGS[0]} and {ARGS[1]} characters',
+  }),
+  validate({
+    validator: 'isAlphanumeric',
+    message: 'Name should contain alpha-numeric characters only',
+  }),
+]
+
+var emailValidator = [
+  validate({
+    validator: 'isLength',
+    arguments: [3, 254],
+    message: 'Email should be between {ARGS[0]} and {ARGS[1]} characters',
+  }),
+  validate({
+    validator: 'isEmail',
+    message: 'Must be a valid email',
+  }),
+]
+
+var passValidator = [
+  validate({
+    validator: 'isLength',
+    arguments: [8, 30],
+    message: 'Password should be between {ARGS[0]} and {ARGS[1]} characters',
+  })
+]
+
 var UserSchema = new mongoose.Schema({
     email: {
         type: String,
-        unique: true,
         required: true,
-        trim: true
+        trim: true,
+        validator: emailValidator
+
     },
     firstName: {
         type: String,
-        unique: true,
         required: true,
-        trim: true
+        trim: true,
+        validator: nameValidator
     },
     lastName: {
         type: String,
-        unique: true,
         required: true,
-        trim: true
+        trim: true,
+        validator: nameValidator
     },
     password: {
         type: String,
         required: true,
-    },
-    passwordConf: {
-        type: String,
-        required: true,
+        validator: passValidator
     }
 });
 
