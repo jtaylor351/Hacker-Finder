@@ -19,7 +19,7 @@
             </div>
 
             <div class="form-group">
-                <label for="email">Enter Email:</label>
+                <label for="email">Enter Unique Email:</label>
                 <input type="email" id="email" class="form-control" formControlName="email">
                 <small [hidden]="signupForm.controls.email.valid  || !signupForm.controls.email.dirty" class="text-danger">
                 Invalid email address
@@ -40,6 +40,30 @@
                 <input type="password" id="re_password" class="form-control" formControlName="re_password">
                 <small [hidden]="signupForm.controls.re_password.valid || !signupForm.controls.re_password.dirty" class="text-danger">
                 Invalid re-entered password
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="school">Where do you go to school? (Leave empty if you're not a student):</label>
+                <input type="text" id="school" class="form-control" formControlName="school">
+                <small [hidden]="signupForm.controls.school.valid || !signupForm.controls.school.dirty" class="text-danger">
+                Invalid school
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="skills">List all of your skills seperated by commas (ex. Angular 2, Python, Wireframing, etc):</label>
+                <input type="text" id="skills" class="form-control" formControlName="skills">
+                <small [hidden]="signupForm.controls.skills.valid || !signupForm.controls.skills.dirty" class="text-danger">
+                Invalid skills
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="picture">Link a url of a picture of yourself (optional):</label>
+                <input type="url" id="picture" class="form-control" formControlName="picture">
+                <small [hidden]="signupForm.controls.picture.valid || !signupForm.controls.picture.dirty" class="text-danger">
+                Invalid url of picture
                 </small>
             </div>
 

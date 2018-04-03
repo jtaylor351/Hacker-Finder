@@ -6,12 +6,12 @@ export class User {
     hackathons?: any;
     school?: String;
     picture?: any;
-    skills?: String[];
+    skills?: any;
 
 
 
     constructor(firstName: string, lastName: string, password: string, email: string, hackathons?: any, school?: any,
-        picture?: any, skills?: String[]) {
+        picture?: any, skills?: any) {
 
         this.firstName = firstName;
         this.lastName = lastName;
