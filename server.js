@@ -37,7 +37,7 @@ app.use(function(req, res, next) {
 app.use('/', api);
 
 
-app.use('/login', user);
+app.use('/user', user);
 
 /**
  * Get port from environment and store in Express.
