@@ -44,18 +44,18 @@
             </div>
 
             <div class="form-group">
-                <label for="school">Where do you go to school? (Leave empty if you're not a student):</label>
-                <input type="text" id="school" class="form-control" formControlName="school">
-                <small [hidden]="signupForm.controls.school.valid || !signupForm.controls.school.dirty" class="text-danger">
+                <label for="school">Where do you go to college? (Leave empty if you're not a student):</label>
+                <input type="text" id="university" class="form-control" formControlName="university">
+                <small [hidden]="signupForm.controls.university.valid || !signupForm.controls.university.dirty" class="text-danger">
                 Invalid school
                 </small>
             </div>
 
             <div class="form-group">
-                <label for="skills">List all of your skills seperated by commas (ex. Angular 2, Python, Wireframing, etc):</label>
-                <input type="text" id="skills" class="form-control" formControlName="skills">
-                <small [hidden]="signupForm.controls.skills.valid || !signupForm.controls.skills.dirty" class="text-danger">
-                Invalid skills
+                <label for="bio">Create a short bio highlighting your skills:</label>
+                <input type="text" id="skills" class="form-control" formControlName="bio">
+                <small [hidden]="signupForm.controls.bio.valid || !signupForm.controls.bio.dirty" class="text-danger">
+                Invalid bio
                 </small>
             </div>
 

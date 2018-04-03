@@ -34,8 +34,8 @@ export class SignUpComponent implements OnInit {
       this.signupForm = this.formBuilder.group({
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
-      school: [null, Validators.compose([])],
-      skills: [null, Validators.required],
+      university: [null, Validators.compose([])],
+      bio: [null, Validators.required],
       picture: [null, Validators.compose([])],
       email: [null, Validators.compose([Validators.required, CustomValidators.email])],
       password: [null, Validators.compose([Validators.required])],
@@ -54,9 +54,9 @@ export class SignUpComponent implements OnInit {
       this.signupForm.value.password,
       this.signupForm.value.email,
       new Array,
-      this.signupForm.value.school,
+      this.signupForm.value.university,
       this.signupForm.value.picture,
-      this.signupForm.value.skills
+      this.signupForm.value.bio
     );
     this.authService.signup(user)
       .subscribe(

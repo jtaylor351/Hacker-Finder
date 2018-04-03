@@ -4,22 +4,22 @@ export class User {
     password: String;
     email: String;
     hackathons?: any;
-    school?: String;
+    university?: String;
     picture?: any;
-    skills?: any;
+    bio?: any;
 
 
 
-    constructor(firstName: string, lastName: string, password: string, email: string, hackathons?: any, school?: any,
-        picture?: any, skills?: any) {
+    constructor(firstName: string, lastName: string, password: string, email: string, hackathons?: any, university?: any,
+        picture?: any, bio?: any) {
 
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
         this.hackathons = hackathons;
-        this.school = school;
+        this.university = university;
         this.picture = picture;
-        this.skills = skills;
+        this.bio = bio;
     }
 }
