@@ -5,10 +5,7 @@ var User = require('../models/user');
 var mongoose = require('mongoose');
 var router = express.Router();
 
-
 router.post('/signup', function(req, res, next) {
-
-
     var user = new User({
             username: req.body.username,
             password: bcrypt.hashSync(req.body.password, 10),

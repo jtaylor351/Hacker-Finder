@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+var validate = require('mongoose-validator');
 
 const SCHOOLS = ["uga", "gatech"]; // const does not mean constant, just that variable can't be reasigned
 const SALT_ROUNDS = 10;
