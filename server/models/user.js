@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+var validate = require('mongoose-validator');
 
 const SCHOOLS = ["uga", "gatech"]; // const does not mean constant, just that variable can't be reasigned
 const SALT_ROUNDS = 10;
@@ -99,28 +100,9 @@ var UserSchema = new mongoose.Schema({
 
 //authenticate input against database
 
-UserSchema.statics.authenticate = new Promise(function(email, password) {
-    User.findOne({ email: email }).exec()
-        .then(function(user) {
-            bcrypt.compare(password, user.password, function(err, result) {
-                if (err) {
-                    console.log(err.message)
-                    reject(err);
-                }
-                if (result === true) {
-                    resolve(user);
-                }
-                var err = new Error('Invalid Password');
-                err.status = 401;
-                console.log(err.message);
-                reject(err);
-            });
-        })
-        .catch(function(err) {
-            console.log(err.message);
-            reject(err);
-        });
-});
+UserSchema.statics.authenticate = function(email) {
+    return User.findOne({ email: email }).exec();
+}
 
 
 var User = mongoose.model('User', UserSchema);

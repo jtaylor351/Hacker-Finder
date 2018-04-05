@@ -6,21 +6,22 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 // Get our API routes
-const api = require('/server/routes/api');
+const api = require('./server/routes/api');
 // const guides = require('server/routes/guides');
-const user = require('/server/routes/user');
+const user = require('./server/routes/user');
 // const create = require('./server/routes/create');
 
 const app = express();
 mongoose.Promise = global.Promise;
-mongoose.connect('localhost:27017/selftaught');
+mongoose.connect('mongodb://127.0.0.1/i2p');
 
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Point static path to dist
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/public'));
 
 
 /**
