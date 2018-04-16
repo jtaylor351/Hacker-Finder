@@ -13,9 +13,14 @@
             <img class="icon" src="" [routerLink]="['']">
             <a class="about-link" href=""> About </a>
         </div>
-        <div class="right-cont">
+        <div class="right-cont" *ngIf="!isLoggedIn()">
             <button id="log-btn" class="nav-btn" [routerLink]="['user/login']"> LOGIN </button>
             <button id="sign-btn" class="nav-btn" [routerLink]="['user/signup']"> SIGN UP </button>
+        </div>
+        <div class="right-cont" *ngIf="isLoggedIn()">
+            <button class="nav-btn" [routerLink]="['home/']"> HACKATHONS </button>
+            <button class="nav-btn" [routerLink]="['home/messages']"> MESSAGES </button>
+            <button class="nav-btn" [routerLink]="['user/profile']"> MY PROFILE </button>
         </div>
     </div>
 </body>
