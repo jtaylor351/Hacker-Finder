@@ -10,17 +10,18 @@
 <body>
     <div class="nav-container">
         <div class="left-cont">
-            <img class="icon" src="" [routerLink]="['']">
-            <a class="about-link" href=""> About </a>
+            <img class="icon" src="../../assets/hackerfinderlogo.png" [routerLink]="['']">
+            <a class="about-link" [routerLink]="['about']"> About </a>
         </div>
         <div class="right-cont" *ngIf="!isLoggedIn()">
             <button id="log-btn" class="nav-btn" [routerLink]="['user/login']"> LOGIN </button>
             <button id="sign-btn" class="nav-btn" [routerLink]="['user/signup']"> SIGN UP </button>
         </div>
         <div class="right-cont" *ngIf="isLoggedIn()">
-            <button class="nav-btn" [routerLink]="['home/']"> HACKATHONS </button>
-            <button class="nav-btn" [routerLink]="['home/messages']"> MESSAGES </button>
-            <button class="nav-btn" [routerLink]="['user/profile']"> MY PROFILE </button>
+            <button id="hack-btn" class="menu-btn" [routerLink]="['home/']"> HACKATHONS </button>
+            <button id="mess-btn" class="menu-btn" [routerLink]="['home/messages']"> MESSAGES </button>
+            <button id="signout-btn" class="menu-btn" [routerLink]="['']"> SIGN OUT </button>
+            <button id="profile-btn" class="nav-btn" [routerLink]="['user/profile']"> MY PROFILE </button>
         </div>
     </div>
 </body>
