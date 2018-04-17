@@ -1,0 +1,48 @@
+/*Main page scss*/
+@import "variables";
+
+
+body {
+	font-family: $main-font;
+	background-color: $grey;
+	div {
+		background-color: white;
+	}
+	.filter {
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		border: 2px solid black;
+		border-radius: 5px;
+		width: 47%;
+		height: 100px;
+		margin-bottom: 50px;
+		position: absolute;
+		top: 80px;
+		margin-left: 13vw;
+	}
+	.hackathons {
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		border: 2px solid black;
+		border-radius: 5px; 
+		width: 47%;
+		height: 500px;
+		position: absolute;
+		top: 220px;
+		margin-left: 13vw;
+	}
+	.going {
+		display: flex;
+		justify-content: space-evenly;
+		border: 2px solid black;
+		border-radius: 5px; 
+		width: 22%;
+		height: 500px;
+		left: 65vw;
+		top: 80px;
+		position: absolute;
+
+	}
+}
