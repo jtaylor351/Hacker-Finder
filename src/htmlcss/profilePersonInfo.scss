@@ -1,0 +1,63 @@
+/*Profile person scss*/
+@import "variables";
+
+body {
+	margin: 0px;
+	font-family: $main-font;
+	.person-info {
+		background-color: white;
+		display: flex;
+		height: 100px;
+		width: 400px; 
+		padding: 5px;
+		border: 3px solid black;
+		border-radius: 5px;
+		.propic {
+			display: flex;
+			img {
+				margin-left: 10px;
+				height: 70px;
+				width: 70px;
+				border-radius: 50%;
+				align-self: center;
+				margin-right: 20px;
+			}
+		}
+		.content {
+			display: flex;
+			flex-direction: column;
+			width: 210px;
+			align-self: center;
+			h3 {
+				padding: 0px;
+				margin: 0px;
+				margin-top: 15px;
+			}
+		}
+		.buttons {
+			display: flex;
+			flex-direction: column;
+			align-self: center;
+			justify-content: center;
+
+			#connect {
+				margin-bottom: 10px;
+			}
+			button {
+				outline: none;
+				align-self: center;
+				height: 30px;
+				width: 70px;
+				background-color: $brown;
+				border: 0px solid transparent;
+				color: white;
+				font-size: 14px;
+			}
+			button:hover {
+				background-color: transparent;
+				border: 3px solid $brown;
+				color: $brown;
+			}
+		}
+	}
+}
