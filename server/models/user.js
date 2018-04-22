@@ -63,37 +63,37 @@ var bioValidator = [
 var UserSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: true,
+        // required: true,
         trim: true,
         validator: emailValidator
 
     },
     password: {
         type: String,
-        required: true,
+        // required: true,
         validator: passValidator
     },
     firstName: {
         type: String,
-        required: true,
+        // required: true,
         trim: true,
         validator: nameValidator
     },
     lastName: {
         type: String,
-        required: true,
+        // required: true,
         trim: true,
         validator: nameValidator
     },
     university: {
         type: String,
-        required: true,
+        // required: true,
         trim: true,
         validator: universityValidator
     },
     bio: {
         type: String,
-        required: false,
+        // required: false,
         validator: bioValidator
     }
 });
