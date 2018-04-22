@@ -95,6 +95,16 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required: false,
         validator: bioValidator
+    },
+    connections: {
+        type: [String],
+        required: false,
+        trim: true,
+    },
+    interestedHacks: {
+        type: String, 
+        required: false,
+        trim: true,
     }
 });
 
