@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AppComponent } from './app.component';
@@ -10,7 +11,8 @@ const APP_ROUTES: Routes = [
     {path: '', component: LandingPageComponent, pathMatch: 'full'},
     {path: 'user/signup', component: SignUpComponent},
     {path: 'user/login', component: LoginComponent},
-    {path: 'about', component: AboutUsComponent}
+    {path: 'about', component: AboutUsComponent},
+    {path: 'home', component: HomeComponent}
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);
