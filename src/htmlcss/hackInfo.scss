@@ -6,64 +6,68 @@ body {
 	margin: 0px;
 	font-family: $main-font;
 	.hack-infocard {
-		padding: 30px;
-		padding-left: 60px;
-		padding-right: 60px;
-		height: auto;
-		width: 45%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		border: 3px solid black;
-		border-radius: 5px;
-		.content {
+		margin-top: 50px;
+			background-color: white;
+			padding: 30px;
+			padding-left: 25px;
+			padding-right: 25px;
+			height: 390px;
+			width: 610px;
 			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			.text-info {
-				margin-right: 50px;
-				line-height: 30px;
-				.xlarge {
-					font-size: 50px;
-				}
-				.large {
-					font-size: 45px;
-				}
-			}
-			.img-info {
+			flex-direction: column;
+			align-items: center;
+			border: 3px solid black;
+			border-radius: 5px;
+			position: absolute;
+			left: 25vw;
+			.content {
 				display: flex;
-				img {
-					align-self: center;
-					height: 200px;
-					width: 300px;
+				flex-direction: row;
+				justify-content: space-between;
+				.text-info {
+					margin-right: 50px;
+					line-height: 30px;
+					.xlarge {
+						font-size: 40px;
+					}
+					.large {
+						font-size: 40px;
+					}
+				}
+				.img-info {
+					display: flex;
+					img {
+						align-self: center;
+						height: 200px;
+						width: 300px;
+					}
 				}
 			}
-		}
-		.blurb {
-			display: flex;
-			width: 350px;
-			p {
-				text-align: center;
-				font-size: 15px;
+			.blurb {
+				display: flex;
+				width: 350px;
+				p {
+					text-align: center;
+					font-size: 15px;
+				}
 			}
-		}
-		.apply-btn {
-			display: flex;
-			justify-content: center;
-			button {
-				align-self: center;
-				height: 50px;
-				width: 150px;
-				background-color: $brown;
-				border: 0px solid white;
-				color: white;
-				font-size: 15px;
+			.apply-btn {
+				display: flex;
+				justify-content: center;
+				button {
+					align-self: center;
+					height: 50px;
+					width: 150px;
+					background-color: $brown;
+					border: 0px solid white;
+					color: white;
+					font-size: 15px;
+				}
+				button:hover {
+					background-color: white;
+					border: 3px solid $brown;
+					color: $brown;
+				}
 			}
-			button:hover {
-				background-color: white;
-				border: 3px solid $brown;
-				color: $brown;
-			}
-		}
 	}
 }
