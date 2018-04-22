@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HackathonPreviewComponent } from './hackathon-preview/hackathon-preview.component';
+import { HackathonComponent } from './hackathon/hackathon.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HackathonPreviewComponent } from './hackathon-preview/hackathon-preview
     LoginComponent,
     HomeComponent,
     AboutUsComponent,
-    HackathonPreviewComponent
+    HackathonPreviewComponent,
+    HackathonComponent
   ],
   imports: [
     FormsModule,
