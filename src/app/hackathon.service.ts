@@ -8,6 +8,7 @@ import { Hackathon } from './hackathon/hackathon.model';
 export class HackathonService {
 
   hackathons: Hackathon[] = [];
+  goingUsers: User[];
   constructor(private http: Http) { }
 
   getHackathons() {
@@ -27,4 +28,19 @@ export class HackathonService {
             .catch((error: Response) => Observable.throw(error.json()));
   }
 
+  getGoingUsers(userIds: String[]) {
+    return this.http.get('http://localhost:3000/home/hackathon',
+    {params: {userIds: userIds}})
+              .map((response: Response) => {
+              const users = response.json().obj;
+              const transformedGoingUsers: User[] = [];
+              for (const x of users) {
+                transformedGoingUsers.push(new User(
+                  x.firstName, x.lastName, x.password, x.email,
+                  null, x.university, x.picture, x.bio));
+              }
+                this.goingUsers = transformedGoingUsers;
+                return transformedGoingUsers;
+    })
+              .catch((error: Response) => Observable.throw(error.json()));
 }
