@@ -75,4 +75,54 @@ router.post('/login', function(req, res, next) {
         });
 });
 
+router.post('/interested-hackathons', function (req, res, next) {
+
+    // User.findOne({ email: email }).exec();
+    User.findOne({_id: req.body.requestee_id}).exec()
+    .then(function(user) {
+        //add to user's array of conections
+        User.update({_id: user.id}, {$set: {interestedHacks: user.interestedHacks.concat([{user_id: req.body.requester_id, accepted:false}])}});
+    })
+    .catch(function(err) {
+        return res.status(err.status).json({
+            title: 'Problem on our end, please try again later',
+            error: { message: err.message }
+        });
+    });
+
+        
+});
+
+router.put('/interested-hackathons', function (req, res, next) {
+
+    // User.findOne({ email: email }).exec();
+    User.findOne({ _id: req.body.requester_id }).exec()
+        .then(function (user) {
+            //add to user's array of conections
+            User.update({ _id: req.body.requester_id }, { $set: { interestedHacks: user.interestedHacks.concat([{ user_id: req.body.requestee_id, accepted: true}]) } });
+        })
+        .catch(function (err) {
+            return res.status(err.status).json({
+                title: 'Problem on our end, please try again later',
+                error: { message: err.message }
+            });
+        });
+
+    // User.findOne({ email: email }).exec();
+    User.findOne({ _id: req.body.requestee_id }).exec()
+        .then(function (user) {
+            //add to user's array of conections
+            //For loop to change the requestee's array so that the accepted is true
+            var i;
+            for (i = 0; i < user.)
+            User.update({ _id: req.body.requester_id }, { $set: { interestedHacks: user.interestedHacks.concat([{ user_id: req.body.requestee_id, accepted: true }]) } });
+        })
+        .catch(function (err) {
+            return res.status(err.status).json({
+                title: 'Problem on our end, please try again later',
+                error: { message: err.message }
+            });
+        });
+});
+
 module.exports = router;
