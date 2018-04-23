@@ -14,6 +14,8 @@ import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HackathonPreviewComponent } from './hackathon-preview/hackathon-preview.component';
 import { HackathonComponent } from './hackathon/hackathon.component';
+import { UserPreviewComponent } from './user-preview/user-preview.component';
+import { InterestedHackathonPreviewComponent } from './interested-hackathon-preview/interested-hackathon-preview.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { HackathonComponent } from './hackathon/hackathon.component';
     HomeComponent,
     AboutUsComponent,
     HackathonPreviewComponent,
-    HackathonComponent
+    HackathonComponent,
+    UserPreviewComponent,
+    InterestedHackathonPreviewComponent
   ],
   imports: [
     FormsModule,
