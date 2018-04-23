@@ -11,6 +11,17 @@ export class HackathonService {
   goingUsers: User[];
   constructor(private http: Http) { }
 
+
+  getHackathon(url: string) {
+        return this.http.get('http://localhost:3000' + url)
+            .map((response: Response) => {
+                const hackathon = response.json().obj;
+                console.log(hackathon);
+                return hackathon;
+            });
+  }
+
+
   getHackathons() {
     return this.http.get('http://localhost:3000/home')
             .map((response: Response) => {
@@ -20,7 +31,7 @@ export class HackathonService {
                   transformedHackathons.push(new Hackathon(
                     x.title, x.location, x.description,
                     x.startDay, x.length, x.universityHost,
-                    x.universityPicture));
+                    x.universityPicture, x.hackathonUrl));
                 }
                 this.hackathons = transformedHackathons;
                 return transformedHackathons;

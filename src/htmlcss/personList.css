@@ -1,2 +1,112 @@
-body{font-family:"Roboto",sans-serif;background-color:#f1f1f1}body .hack-infocard{margin-top:50px;background-color:white;padding:30px;padding-left:25px;padding-right:25px;height:390px;width:610px;display:flex;flex-direction:column;align-items:center;border:3px solid black;border-radius:5px;position:absolute;left:25vw}body .hack-infocard .content{display:flex;flex-direction:row;justify-content:space-between}body .hack-infocard .content .text-info{margin-right:50px;line-height:30px}body .hack-infocard .content .text-info .xlarge{font-size:40px}body .hack-infocard .content .text-info .large{font-size:40px}body .hack-infocard .content .img-info{display:flex}body .hack-infocard .content .img-info img{align-self:center;height:200px;width:300px}body .hack-infocard .blurb{display:flex;width:350px}body .hack-infocard .blurb p{text-align:center;font-size:15px}body .hack-infocard .apply-btn{display:flex;justify-content:center}body .hack-infocard .apply-btn button{align-self:center;height:50px;width:150px;background-color:#5A464C;border:0px solid white;color:white;font-size:15px}body .hack-infocard .apply-btn button:hover{background-color:white;border:3px solid #5A464C;color:#5A464C}body .filter{background-color:white;display:flex;justify-content:space-evenly;align-items:center;border:2px solid black;border-radius:5px;width:640px;height:100px;margin-bottom:50px;position:absolute;top:540px;margin-left:25.25vw}body .people{background-color:white;display:flex;height:500px;width:648px;padding:5px;border:3px solid black;border-radius:5px;position:absolute;top:672px;margin-left:24.5vw}
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: #f1f1f1
+}
+
+body .hack-infocard {
+    margin-top: 50px;
+    background-color: white;
+    padding: 30px;
+    padding-left: 25px;
+    padding-right: 25px;
+    height: 390px;
+    width: 610px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid black;
+    border-radius: 5px;
+    position: absolute;
+    left: 25vw
+}
+
+body .hack-infocard .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+body .hack-infocard .content .text-info {
+    margin-right: 50px;
+    line-height: 30px
+}
+
+body .hack-infocard .content .text-info .xlarge {
+    font-size: 40px
+}
+
+body .hack-infocard .content .text-info .large {
+    font-size: 40px
+}
+
+body .hack-infocard .content .img-info {
+    display: flex
+}
+
+body .hack-infocard .content .img-info img {
+    align-self: center;
+    height: 200px;
+    width: 300px
+}
+
+body .hack-infocard .blurb {
+    display: flex;
+    width: 350px
+}
+
+body .hack-infocard .blurb p {
+    text-align: center;
+    font-size: 15px
+}
+
+body .hack-infocard .apply-btn {
+    display: flex;
+    justify-content: center
+}
+
+body .hack-infocard .apply-btn button {
+    align-self: center;
+    height: 50px;
+    width: 150px;
+    background-color: #5A464C;
+    border: 0px solid white;
+    color: white;
+    font-size: 15px
+}
+
+body .hack-infocard .apply-btn button:hover {
+    background-color: white;
+    border: 3px solid #5A464C;
+    color: #5A464C
+}
+
+body .filter {
+    background-color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 640px;
+    height: 100px;
+    margin-bottom: 50px;
+    position: absolute;
+    top: 540px;
+    margin-left: 25.25vw
+}
+
+body .people {
+    background-color: white;
+    display: flex;
+    height: 500px;
+    width: 648px;
+    padding: 5px;
+    border: 3px solid black;
+    border-radius: 5px;
+    position: absolute;
+    top: 672px;
+    margin-left: 24.5vw
+}
+
+
 /*# sourceMappingURL=personList.css.map */

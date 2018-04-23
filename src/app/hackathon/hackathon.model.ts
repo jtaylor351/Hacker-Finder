@@ -6,6 +6,7 @@ export class Hackathon {
     length: Number;
     universityHost: String;
     universityPicture: String;
+    hackathonUrl: String;
 
 
     constructor(
@@ -15,7 +16,8 @@ export class Hackathon {
     startDay: Date,
     length: Number,
     universityHost: String,
-    universityPicture: String) {
+    universityPicture: String,
+    hackathonUrl: String) {
 
         this.title = title;
         this.location = location;
@@ -24,5 +26,6 @@ export class Hackathon {
         this.length = length;
         this.universityHost = universityHost;
         this.universityPicture = universityPicture;
+        this.hackathonUrl = hackathonUrl;
     }
 }
