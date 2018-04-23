@@ -39,6 +39,23 @@ export class HackathonService {
             .catch((error: Response) => Observable.throw(error.json()));
   }
 
+  getInterestedHackathons(userId: String) {
+    return this.http.get('http://localhost:3000/home')
+            .map((response: Response) => {
+                const hackathons = response.json().obj;
+                const transformedHackathons: Hackathon[] = [];
+                for (const x of hackathons) {
+                  transformedHackathons.push(new Hackathon(
+                    x.title, x.location, x.description,
+                    x.startDay, x.length, x.universityHost,
+                    x.universityPicture, x.hackathonUrl));
+                }
+                this.hackathons = transformedHackathons;
+                return transformedHackathons;
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
+  }
+
   getGoingUsers(userIds: String[]) {
     return this.http.get('http://localhost:3000/home/hackathon',
     {params: {userIds: userIds}})
