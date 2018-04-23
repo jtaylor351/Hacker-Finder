@@ -36,11 +36,12 @@ export class HackathonService {
               const transformedGoingUsers: User[] = [];
               for (const x of users) {
                 transformedGoingUsers.push(new User(
-                  x.firstName, x.lastName, x.password, x.email,
+                  x.firstName, x.lastName, x.password, x.email, x.connections,
                   null, x.university, x.picture, x.bio));
               }
                 this.goingUsers = transformedGoingUsers;
                 return transformedGoingUsers;
     })
               .catch((error: Response) => Observable.throw(error.json()));
+  }
 }
