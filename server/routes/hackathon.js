@@ -21,3 +21,20 @@ router.post('/', function (req, res, next) {
         });
     });
 });
+
+router.get('/', function (req, res, next) {
+    // User.findOne({ email: email }).exec();
+    Hackathon.findOne({date: req.params.data, title: req.params.title}).exec()
+    .then(function(hack) {
+        return res.status(200).json({
+            hackathon: hack
+        });
+        //add to user's array of conections 
+    })
+    .catch(function(err) {
+        return res.status(err.status).json({
+            title: 'Problem on our end, please try again later',
+            error: { message: err.message }
+        });
+    });
+});
