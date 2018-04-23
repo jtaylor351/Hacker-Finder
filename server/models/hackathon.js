@@ -3,8 +3,6 @@ var mongoose = require('mongoose');
 var HackathonSchema = new mongoose.Schema({
     title: {
         type: String,
-        unique: true,
-        required: true,
         trim: true
     },
     location: {
@@ -15,34 +13,20 @@ var HackathonSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    startDay: {
-        type: Number,
-        required: true,
+    startDate: {
+        type: Date
     },
-    month: {
-        type: Number,
-        required: true,
-    },
-    year: {
-        type: Number,
-        required: true,
-    },
-    length: {
-        type: Number,
-        required: true,
+    endDate: {
+        type: Date
     },
     universityHost: {
-        type: String,
-        required: true,
-        trim: true,
+        type: String
     },
     users: {
-        type: [String],
-        required: false,
-        trim: true,
+        type: [ObjectId]
     }
 });
 
 
 var Hackathon = mongoose.model('Hackathon', HackathonSchema);
-module.exports = User;
+module.exports = Hackathon;

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var validate = require('mongoose-validator');
+var Hackathon = require('hackathon');
 
 const SCHOOLS = ["uga", "gatech"]; // const does not mean constant, just that variable can't be reasigned
 const SALT_ROUNDS = 10;
@@ -55,57 +56,59 @@ var universityValidator = [
 var bioValidator = [
     validate({
         validator: 'isLength',
-        arguments: [0, 2000],
-        message: 'Password should be between {ARGS[0]} and {ARGS[1]} characters',
+        arguments: [0, 2000]
     })
 ]
+
 
 var UserSchema = new mongoose.Schema({
     email: {
         type: String,
-        // required: true,
+        required: true,
         trim: true,
         validator: emailValidator
 
     },
     password: {
         type: String,
-        // required: true,
+        required: true,
         validator: passValidator
     },
     firstName: {
         type: String,
-        // required: true,
+        required: true,
         trim: true,
         validator: nameValidator
     },
     lastName: {
         type: String,
-        // required: true,
+        required: true,
         trim: true,
         validator: nameValidator
     },
     university: {
         type: String,
-        // required: true,
+        required: true,
         trim: true,
         validator: universityValidator
     },
     bio: {
         type: String,
-        // required: false,
+        required: true,
         validator: bioValidator
     },
-    connections: {
-        type: [String],
-        required: false,
-        trim: true,
-    },
-    interestedHacks: {
-        type: String, 
-        required: false,
-        trim: true,
-    },
+    acceptedConnections: [{
+        type: ObjectId,
+        ref: 'User'
+    }],
+    pendingConnections: [{
+        type: ObjectId,
+        ref: 'User'
+    }],
+    interestedHacks: [{
+        type: ObjectId, 
+        ref: 'Hackathon'
+    }],
     picture: {
         type: String,
     }
