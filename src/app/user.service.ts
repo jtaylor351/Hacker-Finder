@@ -18,7 +18,7 @@ export class UserService {
               for (const x of requestedUsers) {
                 tranRequestedUsers.push(new User(
                   x.firstName, x.lastName, null,
-                  x.email, x.hackathons, x.university, x.picture, x.bio));
+                  x.email, x.connections, x.hackathons, x.university, x.picture, x.bio));
               }
               this.requestedUsers = tranRequestedUsers;
               return tranRequestedUsers;
