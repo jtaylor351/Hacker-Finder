@@ -43,4 +43,5 @@ export class HackathonService {
                 return transformedGoingUsers;
     })
               .catch((error: Response) => Observable.throw(error.json()));
+  }
 }
