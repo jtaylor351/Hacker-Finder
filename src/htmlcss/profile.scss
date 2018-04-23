@@ -1,0 +1,64 @@
+/* Profile page scss */
+@import "variables";
+
+body {
+	margin: 0px;
+	font-family: $main-font;
+	background-color: $grey;
+	.prof-connections {
+		text-align: center;
+		background-color: white; 
+		border: 3px solid black;
+		border-radius: 5px;
+		width: 400px; 
+		height: 400px;
+		position: absolute; 
+		left: 150px;
+		top: 50px;
+	}	
+	.requests {
+		text-align: center;
+		background-color: white; 
+		border: 3px solid black;
+		border-radius: 5px;
+		width: 400px; 
+		height: 200px;
+		position: absolute; 
+		top: 500px;
+		left: 150px;
+	}
+	.prof-content {
+		position: absolute; 
+		width: 650px; 
+		left: 620px; 
+		height: 300px;
+		display: flex;
+		top: 100px;
+		align-content: row;
+		#propic {
+			//border: 1px solid black;
+			img {
+				border-radius: 50%;
+				width: 200px;
+				height: 200px;
+			}
+			margin-right: 80px;
+		}
+		.prof-text {
+			p {
+				font-size: 18px;
+			}
+		}
+	}
+	.prof-hacks {
+		text-align: center;
+		background-color: white; 
+		border: 3px solid black;
+		border-radius: 5px;
+		width: 650px; 
+		height: 300px; 
+		position: absolute; 
+		top: 400px;
+		left: 620px;
+	}
+}

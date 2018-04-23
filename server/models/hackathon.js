@@ -8,7 +8,7 @@ var HackathonSchema = new mongoose.Schema({
         trim: true
     },
     location: {
-        type: String
+        type: String,
         trim: true
     },
     description: {
@@ -34,7 +34,12 @@ var HackathonSchema = new mongoose.Schema({
     universityHost: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+    },
+    users: {
+        type: [String],
+        required: false,
+        trim: true,
     }
 });
 
