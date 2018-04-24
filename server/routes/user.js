@@ -104,6 +104,33 @@ router.post('/interested-hackathons', function(req, res, next) {
 });
 
 
+// populating the interestedHacks field
+router.get('/interested-hackathons', function (req, res, next) {
+    User.findOne({_id: req.body.userId})
+    .populate('interestedHacks')
+    .exec()
+    .then(function(user) {
+        return res.status(200).json({
+            message: 'Success',
+            email: user.email,
+            university: user.university,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            bio: user.bio,
+            interestedHacks: user.interestedHacks,
+            acceptedConnections: user.acceptedConnections,
+            pendingConnections: user.pendingConnections,
+            picture: user.picture
+        });
+    })
+    .catch(function(err) {
+        return res.status(err.status).json({
+            title: 'Problem on our end, please try again later',
+            error: { message: err.message }
+        });
+    });
+});
+
 // requester is the person sending a conection request
 // requestee is the person the request is being sent to
 // acttion: requester sending conection request to requestee
