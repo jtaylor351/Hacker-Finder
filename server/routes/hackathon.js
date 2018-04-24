@@ -56,38 +56,38 @@ router.get('/interested-users', function(req, res, next) {
 
     req.body.users.forEach(function(element) {
         user_ids.push(mongoose.Types.ObjectId(element));
-      });
+    });
 
     User.find({
-        '_id': { $in: user_ids}
-    }).exec()
-    .then(function(user_array) {
-        user_array.forEach(function(user) {
-            return_users.push({
-                email: user.email,
-                _id: user._id,
-                university: user.university,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                bio: user.bio,
-                interestedHacks: user.interestedHacks,
-                acceptedConnections: user.acceptedConnections,
-                pendingConnections: user.pendingConnections,
-                picture: user.picture
+            '_id': { $in: user_ids }
+        }).exec()
+        .then(function(user_array) {
+            user_array.forEach(function(user) {
+                return_users.push({
+                    email: user.email,
+                    _id: user._id,
+                    university: user.university,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    bio: user.bio,
+                    interestedHacks: user.interestedHacks,
+                    acceptedConnections: user.acceptedConnections,
+                    pendingConnections: user.pendingConnections,
+                    picture: user.picture
+                });
+            });
+
+            return res.status(200).json({
+                message: 'Success',
+                users: return_users
+            });
+        })
+        .catch(function(err) {
+            return res.status(err.status).json({
+                title: 'Problem on our end, please try again later',
+                error: { message: err.message }
             });
         });
-
-        return res.status(200).json({
-            message: 'Success',
-            users: return_users
-        });
-    })
-    .catch(function(err) {
-        return res.status(err.status).json({
-            title: 'Problem on our end, please try again later',
-            error: { message: err.message }
-        });
-    });
 });
 
 

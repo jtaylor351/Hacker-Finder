@@ -8,7 +8,24 @@ var router = express.Router();
 
 
 
+//@jordan, dont worry I did it
+router.get('/', function(req, res, next) {
+    Hackathon.find()
+        .exec(function(err, hackathon) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(201).json({
+                message: 'Saved message',
+                obj: hackathons
 
+            });
+        });
+
+});
 
 
 

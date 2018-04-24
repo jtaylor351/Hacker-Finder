@@ -58,8 +58,8 @@ export class HackathonService {
   }
 
   getGoingUsers(userIds: String[]) {
-    return this.http.get('http://localhost:3000/home/hackathon',
-    {params: {userIds: userIds}})
+    return this.http.get('http://localhost:3000/hackathon/interested-users',
+    {params: {users: userIds}})
               .map((response: Response) => {
               const users = response.json().obj;
               const transformedGoingUsers: User[] = [];
