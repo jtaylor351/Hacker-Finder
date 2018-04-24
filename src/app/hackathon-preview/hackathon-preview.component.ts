@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./hackathon-preview.component.css']
 })
 export class HackathonPreviewComponent implements OnInit {
-  @Input() hackathon: Hackathon;
+  @Input() hackathons: Hackathon[];
   constructor(public hackathonService: HackathonService) { }
 
   ngOnInit() {

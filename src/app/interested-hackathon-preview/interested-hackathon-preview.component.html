@@ -7,13 +7,13 @@
 </head>
 
 <body>
-    <div class="container">
+    <div *ngFor="let hackathon of interestedHackathons" class="container">
         <div class="hack-img">
-            <img id="hack-img" src="">
+            <img id="hack-img" src="{{hackathon.picture}}">
         </div>
         <div class="hack-info">
             <div class="hack-name" id="hack-name">
-                <h3> Hack Name </h3>
+                <h3> {{hackathon.title}}</h3>
             </div>
             <div class="info-btn">
                 <button id="hack-page" href=""> VIEW MORE </button>
