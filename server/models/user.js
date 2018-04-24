@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var validate = require('mongoose-validator');
-var Hackathon = require('hackathon');
+var Hackathon = require('./hackathon');
 
 const SCHOOLS = ["uga", "gatech"]; // const does not mean constant, just that variable can't be reasigned
 const SALT_ROUNDS = 10;
@@ -98,15 +98,15 @@ var UserSchema = new mongoose.Schema({
         validator: bioValidator
     },
     acceptedConnections: [{
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
     pendingConnections: [{
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
     interestedHacks: [{
-        type: ObjectId, 
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'Hackathon'
     }],
     picture: {

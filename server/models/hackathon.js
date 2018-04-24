@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var User = require('./user');
 
 var HackathonSchema = new mongoose.Schema({
     title: {
@@ -19,12 +20,13 @@ var HackathonSchema = new mongoose.Schema({
     endDate: {
         type: Date
     },
-    universityHost: {
+    host: {
         type: String
     },
-    users: {
-        type: [ObjectId]
-    }
+    users: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 });
 
 

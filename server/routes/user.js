@@ -7,7 +7,7 @@ var router = express.Router();
 
 
 router.post('/signup', function(req, res, next) {
-    console.log(req.body);
+    // console.log(req.body);
     var user = new User({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -15,7 +15,6 @@ router.post('/signup', function(req, res, next) {
             email: req.body.email,
             university: req.body.university
         }
-
     );
 
     user.save(function(err, result) {
