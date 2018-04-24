@@ -8,11 +8,56 @@ var router = express.Router();
 
 router.post('/', function(req, res, next) {
 
-    // User.findOne({ email: email }).exec();
-    User.findOne({ _id: req.body.requestee_id }).exec()
-        .then(function(user) {
-            //add to user's array of conections
-            User.update({ _id: user.id }, { $set: { interestedHacks: user.interestedHacks.concat([{ user_id: req.body.requester_id, accepted: false }]) } });
+
+    if (Date.parse(req.body.startDate) === NaN 
+        || Date.parse(req.body.endDate) === NaN) 
+    {
+        return res.status(400).json({
+            error: "Invalid Date"
+        });
+    }
+
+    var start = new Date(req.body.startDate);
+    var end = new Date(req.body.endDate);
+
+    if (+start >= +end)
+    {
+        return res.status(400).json({
+            error: "Invalid Date"
+        });
+    }
+
+    var hack = new Hackathon({
+            title: req.body.title,
+            location: req.body.location,
+            description: req.body.description,
+            startDate: start,
+            endDate: end,
+            host: req.body.host
+        }
+    );
+
+
+    hack.save(function(err, result) {
+        if (err) {
+            return res.status(500).json({
+                title: 'an error occurred',
+                error: err
+            });
+        }
+        return res.status(201).json({
+            message: 'Hackathon created',
+            obj: result
+        });
+    });
+});
+
+router.get('/:title/:date', function(req, res, next) {
+    Hackathon.findOne({ date: req.params.date, title: req.params.title }).exec()
+        .then(function(hack) {
+            return res.status(200).json({
+                hackathon: hack
+            });
         })
         .catch(function(err) {
             return res.status(err.status).json({
@@ -22,19 +67,4 @@ router.post('/', function(req, res, next) {
         });
 });
 
-router.get('/:title/:date', function(req, res, next) {
-    // User.findOne({ email: email }).exec();
-    Hackathon.findOne({ date: req.params.date, title: req.params.title }).exec()
-        .then(function(hack) {
-            return res.status(200).json({
-                hackathon: hack
-            });
-            //add to user's array of conections 
-        })
-        .catch(function(err) {
-            return res.status(err.status).json({
-                title: 'Problem on our end, please try again later',
-                error: { message: err.message }
-            });
-        });
-});
+module.exports = router;
