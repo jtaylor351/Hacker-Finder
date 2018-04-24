@@ -173,14 +173,14 @@ router.put('/connect', function(req, res, next) {
         });
 });
 
-// requester is the person sending a conection request (have email)
+// requester is the person sending a conection request (have id)
 // requestee is the person the request is being sent to (have id)
 // acttion: requestee rejecting conection request from requester
 router.delete('/connect', function(req, res, next) {
     User.findByIdAndUpdate(req.body.requestee_id, { $pull: { pendingConnections: req.body.requester_id } }, { 'new': true }).exec()
         .then(function(user) {
             return res.status(200).json({
-                message: 'Request Sent!'
+                message: 'Request Denied!'
             });
         })
         .catch(function(err) {
