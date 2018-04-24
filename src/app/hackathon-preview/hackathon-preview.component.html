@@ -13,25 +13,25 @@
         </div>
         <div class="content">
             <div id="hack-name">
-                <h1> Example Name </h1>
+                <h1> {{hackathon.title}}}</h1>
             </div>
             <div class="hack-details">
                 <div class="hack-in" id="location">
                     <img src="./../../assets/locationicon.png">
-                    <h4> Location </h4>
+                    <h4> {{hackathon.location}} </h4>
                 </div>
-                <div class="hack-in" id="size">
+                <!-- <div class="hack-in" id="size">
                     <img src="./../../assets/peopleicon.png">
                     <h4> Size </h4>
-                </div>
+                </div> -->
                 <div class="hack-in" id="date">
                     <img src="./../../assets/calendaricon.png">
-                    <h4> Date </h4>
+                    <h4> {{hackathon.date}} </h4>
                 </div>
             </div>
         </div>
         <div class="going">
-            <button id="going-btn"> GOING </button>
+            <button id="going-btn" (click)="going(hackathon)"> GOING </button>
         </div>
     </div>
 </body>

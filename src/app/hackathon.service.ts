@@ -6,7 +6,7 @@ import { Hackathon } from './hackathon/hackathon.model';
 
 @Injectable()
 export class HackathonService {
-
+  submissionSuccess = false;
   hackathons: Hackathon[] = [];
   goingUsers: User[];
   constructor(private http: Http) { }
@@ -71,5 +71,17 @@ export class HackathonService {
                 return transformedGoingUsers;
     })
               .catch((error: Response) => Observable.throw(error.json()));
+  }
+
+  addGoing(hackathon: Hackathon) {
+    const body = JSON.stringify(hackathon);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+    return this.http.post('http://localhost:3000/user/interested-hackathons' + token, body, {headers: headers})
+      .map((response: Response) => {
+                response.json();
+                this.submissionSuccess = true;
+            })
+            .catch((error: Response) => Observable.throw(error.json));
   }
 }

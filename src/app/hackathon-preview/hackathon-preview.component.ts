@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Hackathon } from '../hackathon/hackathon.model';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-hackathon-preview',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hackathon-preview.component.css']
 })
 export class HackathonPreviewComponent implements OnInit {
-
+  @Input() hackathon: Hackathon;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  going(hackathon: Hackathon) {
+    
   }
 
 }

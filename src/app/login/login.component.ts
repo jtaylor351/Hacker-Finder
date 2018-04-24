@@ -27,10 +27,11 @@ export class LoginComponent implements OnInit {
    }
 
   onLogin() {
-      const user = new User(null, null, this.loginForm.value.password, this.loginForm.value.email);
+      const user = new User(null, null, this.loginForm.value.password, this.loginForm.value.email, null);
       this.authService.signin(user)
         .subscribe(
           data => {
+            console.log(data);
             localStorage.setItem('token', data.token);
             localStorage.setItem('userId', data.userId);
             localStorage.setItem('email', data.email);

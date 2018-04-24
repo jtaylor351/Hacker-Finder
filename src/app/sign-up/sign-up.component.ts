@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from './../auth/user.model';
 import { CustomValidators } from 'ng2-validation';
+import { Router } from '@angular/router';
 
 
 
@@ -14,7 +15,7 @@ import { CustomValidators } from 'ng2-validation';
 export class SignUpComponent implements OnInit {
   signupForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.createForm();
   }
 
@@ -60,7 +61,7 @@ export class SignUpComponent implements OnInit {
     );
     this.authService.signup(user)
       .subscribe(
-        data => console.log(data),
+        data => this.router.navigateByUrl('/user/login'),
         error => console.error(error)
       );
   }
