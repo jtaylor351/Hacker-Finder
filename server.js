@@ -13,6 +13,7 @@ const api = require('./server/routes/api');
 const user = require('./server/routes/user');
 const home = require('./server/routes/home');
 const hackathon = require('./server/routes/hackathon');
+const home = require('./server/routes/home');
 
 // const create = require('./server/routes/create');
 
@@ -43,6 +44,7 @@ app.use(function(req, res, next) {
 app.use('/user', user);
 app.use('/home', home);
 app.use('/hackathon', hackathon);
+app.use('/home', home);
 app.use('/', api);
 
 /**

@@ -25,4 +25,8 @@ export class HackathonComponent implements OnInit {
       .subscribe(res => { this.goingUsers = res; });
   }
 
+  goToUrl(url: String) {
+    this.router.navigateByUrl('' + url);
+  }
+
 }

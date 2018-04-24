@@ -9,11 +9,11 @@
 <body>
     <div class="hack-card" *ngFor="let hackathon of hackathons">
         <div class="pic">
-            <img src="">
+            <img src="{{hackathon.universityPicture}}">
         </div>
         <div class="content">
             <div id="hack-name">
-                <h1> {{hackathon.title}}}</h1>
+                <h1> {{hackathon.title}}</h1>
             </div>
             <div class="hack-details">
                 <div class="hack-in" id="location">
@@ -26,7 +26,7 @@
                 </div> -->
                 <div class="hack-in" id="date">
                     <img src="./../../assets/calendaricon.png">
-                    <h4> {{hackathon.date}} </h4>
+                    <h4> {{hackathon.startDate | date}} </h4>
                 </div>
             </div>
         </div>
