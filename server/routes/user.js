@@ -113,6 +113,7 @@ router.get('/interested-hackathons', function (req, res, next) {
         return res.status(200).json({
             message: 'Success',
             email: user.email,
+            _id: user._id,
             university: user.university,
             firstName: user.firstName,
             lastName: user.lastName,

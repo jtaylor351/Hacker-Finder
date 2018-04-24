@@ -34,7 +34,6 @@ router.post('/', function(req, res, next) {
         host: req.body.host
     });
 
-
     hack.save(function(err, result) {
         if (err) {
             return res.status(500).json({
@@ -48,6 +47,49 @@ router.post('/', function(req, res, next) {
         });
     });
 });
+
+
+router.get('/interested-users', function(req, res, next) {
+
+    var user_ids = [];
+    var return_users = [];
+
+    req.body.users.forEach(function(element) {
+        user_ids.push(mongoose.Types.ObjectId(element));
+      });
+
+    User.find({
+        '_id': { $in: user_ids}
+    }).exec()
+    .then(function(user_array) {
+        user_array.forEach(function(user) {
+            return_users.push({
+                email: user.email,
+                _id: user._id,
+                university: user.university,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                bio: user.bio,
+                interestedHacks: user.interestedHacks,
+                acceptedConnections: user.acceptedConnections,
+                pendingConnections: user.pendingConnections,
+                picture: user.picture
+            });
+        });
+
+        return res.status(200).json({
+            message: 'Success',
+            users: return_users
+        });
+    })
+    .catch(function(err) {
+        return res.status(err.status).json({
+            title: 'Problem on our end, please try again later',
+            error: { message: err.message }
+        });
+    });
+});
+
 
 router.get('/:title/:date', function(req, res, next) {
     Hackathon.findOne({ date: req.params.date, title: req.params.title }).exec()
