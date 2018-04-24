@@ -124,21 +124,12 @@ router.post('/connect', function (req, res, next) {
 // requester is the person who's request is being accepted
 // requestee is the person accepting the request from pending
 router.put('/connect', function (req, res, next) {
-    User.findByIdAndUpdate(req.body.requestee_id, {$push: {acceptedConnections: req.body.requester_id},
-        $pull: {pendingConnections: req.body.requester_id}}, {'new': true}).exec()
+    User.findByIdAndUpdate(req.body.requester_id, {$push: {acceptedConnections: req.body.requestee_id}}, {'new': true}).exec()
+    .then(function(user) {
+        return User.findByIdAndUpdate(req.body.requestee_id, {$push: {acceptedConnections: req.body.requester_id}, $pull: {pendingConnections: req.body.requester_id}}, {'new': true}).exec()
+    })
     .then(function(requestee) {
-        User.findByIdAndUpdate(req.body.requester_id, {$push: {acceptedConnections: req.body.requestee_id}}, {'new': true}).exec()
-        .then(function(user) {
-            return res.status(200).json({
-                message: 'Connection Made!'
-            });
-        })
-        .catch(function(err) {
-            return res.status(err.status).json({
-                title: 'Problem on our end, please try again later',
-                error: { message: err.message }
-            });
-        });
+        return res.status(200).json({message: 'Connection Made!'});
     })
     .catch(function(err) {
         return res.status(err.status).json({
