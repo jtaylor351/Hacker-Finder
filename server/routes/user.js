@@ -2,6 +2,7 @@ var express = require('express');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var User = require('../models/user');
+var Hackathon = require('../models/hackathon');
 var mongoose = require('mongoose');
 var router = express.Router();
 
@@ -83,58 +84,63 @@ router.post('/login', function(req, res, next) {
 });
 
 // @param userId (person logged in sayign they are interested)
-// @param hackathonId (hackathon user is interested in)
+// @param title (hackathon title)
 router.post('/interested-hackathons', function(req, res, next) {
-    User.findByIdAndUpdate(req.body.userId, { $push: { interestedHacks: req.body.hackathonId } }, { 'new': true }).exec()
-        .then(function(user) {
-            return res.status(200).json({
-                message: 'Success',
-                email: user.email,
-                university: user.university,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                bio: user.bio,
-                interestedHacks: user.interestedHacks,
-                acceptedConnections: user.acceptedConnections,
-                pendingConnections: user.pendingConnections,
-                picture: user.picture
-            });
-        })
-        .catch(function(err) {
-            return res.status(err.status).json({
-                title: 'Problem on our end, please try again later',
-                error: { message: err.message }
-            });
+
+    Hackathon.findOneAndUpdate({title: req.body.title}
+        , { $push: { users: req.body.userId} }, { 'new': true }).exec()
+    .then(function(hack) {
+        return User.findByIdAndUpdate(req.body.userId, { $push: { interestedHacks: mongoose.Types.ObjectId(hack._id) } }, { 'new': true }).exec();
+    })
+    .then(function(user) {
+        console.log(user);        
+        return res.status(200).json({
+            message: 'Success',
+            email: user.email,
+            university: user.university,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            bio: user.bio,
+            interestedHacks: user.interestedHacks,
+            acceptedConnections: user.acceptedConnections,
+            pendingConnections: user.pendingConnections,
+            picture: user.picture
         });
+    })
+    .catch(function(err) {
+        return res.status(err.status).json({
+            title: 'Problem on our end, please try again later',
+            error: { message: err.message }
+        });
+    });
+
 });
 
 
 // populating the interestedHacks field
 router.get('/interested-hackathons', function(req, res, next) {
-    User.findOne({ _id: req.query.userId })
-        .populate('interestedHacks')
-        .exec()
-        .then(function(user) {
-            return res.status(200).json({
-                message: 'Success',
-                email: user.email,
-                _id: user._id,
-                university: user.university,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                bio: user.bio,
-                interestedHacks: user.interestedHacks,
-                acceptedConnections: user.acceptedConnections,
-                pendingConnections: user.pendingConnections,
-                picture: user.picture
-            });
-        })
-        .catch(function(err) {
-            return res.status(err.status).json({
-                title: 'Problem on our end, please try again later',
-                error: { message: err.message }
-            });
+    User.findOne({ _id: req.query.userId }).populate('interestedHacks').exec()
+    .then(function(user) {
+        return res.status(200).json({
+            message: 'Success',
+            email: user.email,
+            _id: user._id,
+            university: user.university,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            bio: user.bio,
+            interestedHacks: user.interestedHacks,
+            acceptedConnections: user.acceptedConnections,
+            pendingConnections: user.pendingConnections,
+            picture: user.picture
         });
+    })
+    .catch(function(err) {
+        return res.status(err.status).json({
+            title: 'Problem on our end, please try again later',
+            error: { message: err.message }
+        });
+    });
 });
 
 // requester is the person sending a conection request (have the id)

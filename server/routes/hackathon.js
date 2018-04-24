@@ -6,9 +6,9 @@ var Hackathon = require('../models/hackathon');
 var mongoose = require('mongoose');
 var router = express.Router();
 
+
+
 router.post('/', function(req, res, next) {
-
-
     if (Date.parse(req.body.startDate) === NaN ||
         Date.parse(req.body.endDate) === NaN) {
         return res.status(400).json({

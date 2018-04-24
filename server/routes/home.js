@@ -19,13 +19,8 @@ router.get('/', function(req, res, next) {
                 });
             }
             res.status(201).json({
-<<<<<<< HEAD
                 message: 'Hackathons Retrieved',
                 obj: hackathons
-=======
-                message: 'Saved message',
-                obj: hackathon
->>>>>>> 8ae4ecef36b9a9f6358b167263193a388b5ea82a
 
             });
         });
