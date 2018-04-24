@@ -12,6 +12,7 @@ const api = require('./server/routes/api');
 // const guides = require('server/routes/guides');
 const user = require('./server/routes/user');
 const hackathon = require('./server/routes/hackathon');
+const home = require('./server/routes/home');
 
 // const create = require('./server/routes/create');
 
@@ -41,6 +42,7 @@ app.use(function(req, res, next) {
 // Set our api routes
 app.use('/user', user);
 app.use('/hackathon', hackathon);
+app.use('/home', home);
 app.use('/', api);
 
 /**

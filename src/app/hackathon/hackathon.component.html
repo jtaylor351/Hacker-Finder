@@ -24,7 +24,7 @@
             <p> {{newHackathon.description}} </p>
         </div>
         <div class="apply-btn">
-            <button id="apply" href="{{newHackathon.url}}"> 
+            <button id="apply" (click)="goToUrl(newHackathon.hackathonUrl)"> 
 		APPLY NOW! </button>
         </div>
     </div>

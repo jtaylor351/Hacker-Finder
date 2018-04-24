@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
             }
             res.status(201).json({
                 message: 'Saved message',
-                obj: hackathons
+                obj: hackathon
 
             });
         });

@@ -1,3 +1,5 @@
+import { UserService } from './user.service';
+import { HackathonService } from './hackathon.service';
 import { AuthService } from './auth/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -38,7 +40,7 @@ import { InterestedHackathonPreviewComponent } from './interested-hackathon-prev
     routing,
     HttpModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, HackathonService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
