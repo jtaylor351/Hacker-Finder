@@ -132,11 +132,11 @@ router.get('/interested-hackathons', function (req, res, next) {
     });
 });
 
-// requester is the person sending a conection request
-// requestee is the person the request is being sent to
+// requester is the person sending a conection request (have the id)
+// requestee is the person the request is being sent to (have the email)
 // acttion: requester sending conection request to requestee
 router.post('/connect', function(req, res, next) {
-    User.findByIdAndUpdate(req.body.requestee_id, { $push: { pendingConnections: req.body.requester_id } }, { 'new': true }).exec()
+    User.findOneAndUpdate({email: req.body.requestee_email}, {$push: {pendingConnections: mongoose.Types.ObjectId(req.body.requester_id)}}, { 'new': true }).exec()
         .then(function(user) {
             return res.status(200).json({
                 message: 'Request Sent!'
@@ -150,13 +150,13 @@ router.post('/connect', function(req, res, next) {
         });
 });
 
-// requester is the person who's request is being accepted
-// requestee is the person accepting the request from pending
+// requester is the person who's request is being accepted (have email)
+// requestee is the person accepting the request from pending (have id)
 // acttion: requestee accepting conection request from requester
 router.put('/connect', function(req, res, next) {
-    User.findByIdAndUpdate(req.body.requester_id, { $push: { acceptedConnections: req.body.requestee_id } }, { 'new': true }).exec()
+    User.findOneAndUpdate({email: req.body.requester_email}, { $push: { acceptedConnections: req.body.requestee_id } }, { 'new': true }).exec()
         .then(function(user) {
-            return User.findByIdAndUpdate(req.body.requestee_id, { $push: { acceptedConnections: req.body.requester_id }, $pull: { pendingConnections: req.body.requester_id } }, { 'new': true }).exec()
+            return User.findByIdAndUpdate(req.body.requestee_id, { $push: { acceptedConnections: user._id }, $pull: { pendingConnections: user._id } }, { 'new': true }).exec()
         })
         .then(function(requestee) {
             return res.status(200).json({ message: 'Connection Made!' });
@@ -169,8 +169,8 @@ router.put('/connect', function(req, res, next) {
         });
 });
 
-// requester is the person sending a conection request
-// requestee is the person the request is being sent to
+// requester is the person sending a conection request (have email)
+// requestee is the person the request is being sent to (have id)
 // acttion: requestee rejecting conection request from requester
 router.delete('/connect', function(req, res, next) {
     User.findByIdAndUpdate(req.body.requestee_id, { $pull: { pendingConnections: req.body.requester_id } }, { 'new': true }).exec()
