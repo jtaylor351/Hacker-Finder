@@ -31,7 +31,9 @@ router.post('/', function(req, res, next) {
         description: req.body.description,
         startDate: start,
         endDate: end,
-        host: req.body.host
+        host: req.body.host,
+        universityPicture: req.body.universityPicture,
+        hackathonUrl: req.body.hackathonUrl
     });
 
     hack.save(function(err, result) {

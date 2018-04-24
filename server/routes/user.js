@@ -13,7 +13,8 @@ router.post('/signup', function(req, res, next) {
         lastName: req.body.lastName,
         password: bcrypt.hashSync(req.body.password, 10),
         email: req.body.email,
-        university: req.body.university
+        university: req.body.university,
+        bio: req.body.bio
     });
 
     user.save(function(err, result) {
@@ -105,38 +106,38 @@ router.post('/interested-hackathons', function(req, res, next) {
 
 
 // populating the interestedHacks field
-router.get('/interested-hackathons', function (req, res, next) {
-    User.findOne({_id: req.body.userId})
-    .populate('interestedHacks')
-    .exec()
-    .then(function(user) {
-        return res.status(200).json({
-            message: 'Success',
-            email: user.email,
-            _id: user._id,
-            university: user.university,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            bio: user.bio,
-            interestedHacks: user.interestedHacks,
-            acceptedConnections: user.acceptedConnections,
-            pendingConnections: user.pendingConnections,
-            picture: user.picture
+router.get('/interested-hackathons', function(req, res, next) {
+    User.findOne({ _id: req.body.userId })
+        .populate('interestedHacks')
+        .exec()
+        .then(function(user) {
+            return res.status(200).json({
+                message: 'Success',
+                email: user.email,
+                _id: user._id,
+                university: user.university,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                bio: user.bio,
+                interestedHacks: user.interestedHacks,
+                acceptedConnections: user.acceptedConnections,
+                pendingConnections: user.pendingConnections,
+                picture: user.picture
+            });
+        })
+        .catch(function(err) {
+            return res.status(err.status).json({
+                title: 'Problem on our end, please try again later',
+                error: { message: err.message }
+            });
         });
-    })
-    .catch(function(err) {
-        return res.status(err.status).json({
-            title: 'Problem on our end, please try again later',
-            error: { message: err.message }
-        });
-    });
 });
 
 // requester is the person sending a conection request (have the id)
 // requestee is the person the request is being sent to (have the email)
 // acttion: requester sending conection request to requestee
 router.post('/connect', function(req, res, next) {
-    User.findOneAndUpdate({email: req.body.requestee_email}, {$push: {pendingConnections: mongoose.Types.ObjectId(req.body.requester_id)}}, { 'new': true }).exec()
+    User.findOneAndUpdate({ email: req.body.requestee_email }, { $push: { pendingConnections: mongoose.Types.ObjectId(req.body.requester_id) } }, { 'new': true }).exec()
         .then(function(user) {
             return res.status(200).json({
                 message: 'Request Sent!'
@@ -154,7 +155,7 @@ router.post('/connect', function(req, res, next) {
 // requestee is the person accepting the request from pending (have id)
 // acttion: requestee accepting conection request from requester
 router.put('/connect', function(req, res, next) {
-    User.findOneAndUpdate({email: req.body.requester_email}, { $push: { acceptedConnections: req.body.requestee_id } }, { 'new': true }).exec()
+    User.findOneAndUpdate({ email: req.body.requester_email }, { $push: { acceptedConnections: req.body.requestee_id } }, { 'new': true }).exec()
         .then(function(user) {
             return User.findByIdAndUpdate(req.body.requestee_id, { $push: { acceptedConnections: user._id }, $pull: { pendingConnections: user._id } }, { 'new': true }).exec()
         })

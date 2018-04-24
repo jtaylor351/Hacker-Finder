@@ -15,7 +15,7 @@ export class Hackathon {
     location: string,
     description: string,
     startDay: Date,
-    length: Number,
+    endDate: Date,
     universityHost: String,
     universityPicture: String,
     hackathonUrl: String,
