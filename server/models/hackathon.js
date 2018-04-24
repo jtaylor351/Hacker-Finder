@@ -15,10 +15,10 @@ var HackathonSchema = new mongoose.Schema({
         trim: true
     },
     startDate: {
-        type: Date
+        type: String
     },
     endDate: {
-        type: Date
+        type: String
     },
     host: {
         type: String
@@ -27,12 +27,12 @@ var HackathonSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
-    universityPicture: [{
+    universityPicture: {
         type: String
-    }],
-    hackathonUrl: [{
+    },
+    hackathonUrl: {
         type: String
-    }]
+    }
 
 });
 
