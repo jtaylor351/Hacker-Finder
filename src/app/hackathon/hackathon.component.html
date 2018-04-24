@@ -12,28 +12,61 @@
         <div class="content">
             <div class="text-info">
                 <h1 class="xlarge" id="hack-name"> {{newHackathon.title}} </h1>
-                <h1 class="large" id="hack-school"> Hack School </h1>
-                <h2 id="hack-location"> Hack Location </h2>
-                <h2 id="hack-date"> Hackathon date </h2>
+                <h1 class="large" id="hack-school"> {{newHackathon.university}} </h1>
+                <!-- <h2 id="hack-location"> Hack Location </h2> -->
+                <h2 id="hack-date"> {{newHackathon.startDate}} </h2>
             </div>
             <div class="img-info">
-                <img id="hack-img" src="">
+                <img id="hack-img" src="{{newHackathon.picture}}">
             </div>
         </div>
         <div class="blurb">
-            <p> This is the information about the hackathon. It's a really cool hackathon. It'll be so different from all the other hackathons. Come to this hackathon. </p>
+            <p> {{newHackathon.description}} </p>
         </div>
         <div class="apply-btn">
-            <button id="apply" href=""> 
+            <button id="apply" href="{{newHackathon.url}}"> 
 		APPLY NOW! </button>
         </div>
     </div>
 
     <div class="filter">
+        <div class="filter">
+            <div class="container">
+                <div class="label">
+                    <h3> FILTER</h3>
+                </div>
+                <div class="filters">
+                    <div class="filter-set">
+                        <button class="dropbtn" id="filt1">DISTANCE</button>
+                        <!-- <div class="dropdown-content" id="drop1">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div> -->
+                    </div>
+                    <div class="filter-set">
+                        <button class="dropbtn" id="filt2">TYPE</button>
+                        <!-- <div class="dropdown-content" id="drop2">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div> -->
+                    </div>
+                    <div class="filter-set">
+                        <button class="dropbtn" id="filt3">LENGTH</button>
+                        <!-- <div class="dropdown-content" id="drop3">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div> -->
+                    </div>
+                </div>
+            </div>
 
+        </div>
     </div>
     <div class="people">
-
+        <app-user-preview [goingUsers]='goingUsers'></app-user-preview>
     </div>
 
 </body>

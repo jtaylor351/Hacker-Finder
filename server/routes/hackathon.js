@@ -9,9 +9,8 @@ var router = express.Router();
 router.post('/', function(req, res, next) {
 
 
-    if (Date.parse(req.body.startDate) === NaN 
-        || Date.parse(req.body.endDate) === NaN) 
-    {
+    if (Date.parse(req.body.startDate) === NaN ||
+        Date.parse(req.body.endDate) === NaN) {
         return res.status(400).json({
             error: "Invalid Date"
         });
@@ -20,22 +19,20 @@ router.post('/', function(req, res, next) {
     var start = new Date(req.body.startDate);
     var end = new Date(req.body.endDate);
 
-    if (+start >= +end)
-    {
+    if (+start >= +end) {
         return res.status(400).json({
             error: "Invalid Date"
         });
     }
 
     var hack = new Hackathon({
-            title: req.body.title,
-            location: req.body.location,
-            description: req.body.description,
-            startDate: start,
-            endDate: end,
-            host: req.body.host
-        }
-    );
+        title: req.body.title,
+        location: req.body.location,
+        description: req.body.description,
+        startDate: start,
+        endDate: end,
+        host: req.body.host
+    });
 
 
     hack.save(function(err, result) {

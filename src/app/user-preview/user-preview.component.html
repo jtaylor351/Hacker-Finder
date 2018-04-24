@@ -10,18 +10,18 @@
 
 <body>
 
-    <div class="person-info">
+    <div class="person-info" *ngFor="let user of goingUsers">
         <div class="propic">
             <img src="">
         </div>
         <div class="content">
-            <h3 id="name"> Name </h3>
+            <h3 id="name"> {{user.firstName}} {{user.lastName}} </h3>
             <div id="bio">
-                <p id="bio-text"> I know how to code with blockchain and artifical intelligence technologies. </p>
+                <p id="bio-text"> {{user.bio}} </p>
             </div>
         </div>
         <div class="buttons">
-            <button id="message"> CONNECT </button>
+            <button id="message" (click)="connect(user)"> CONNECT </button>
             <button id="view"> VIEW </button>
         </div>
     </div>
