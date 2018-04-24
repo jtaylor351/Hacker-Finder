@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
                 });
             }
             res.status(201).json({
-                message: 'Saved message',
+                message: 'Hackathons Retrieved',
                 obj: hackathons
 
             });

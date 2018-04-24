@@ -82,7 +82,8 @@ router.post('/login', function(req, res, next) {
         });
 });
 
-
+// @param userId (person logged in sayign they are interested)
+// @param hackathonId (hackathon user is interested in)
 router.post('/interested-hackathons', function(req, res, next) {
     User.findByIdAndUpdate(req.body.userId, { $push: { interestedHacks: req.body.hackathonId } }, { 'new': true }).exec()
         .then(function(user) {
@@ -110,7 +111,7 @@ router.post('/interested-hackathons', function(req, res, next) {
 
 // populating the interestedHacks field
 router.get('/interested-hackathons', function(req, res, next) {
-    User.findOne({ _id: req.body.userId })
+    User.findOne({ _id: req.query.userId })
         .populate('interestedHacks')
         .exec()
         .then(function(user) {
