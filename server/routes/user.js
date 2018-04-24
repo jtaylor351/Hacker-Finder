@@ -56,6 +56,9 @@ router.post('/login', function(req, res, next) {
                             lastName: user.lastName,
                             bio: user.bio,
                             interestedHacks: user.interestedHacks,
+                            acceptedConnections: user.acceptedConnections,
+                            pendingConnections: user.pendingConnections,
+                            picture: user.picture,
                             userId: user._id
                         });
                     }
@@ -151,11 +154,11 @@ router.post('/connect', function(req, res, next) {
         });
 });
 
-// requester is the person who's request is being accepted (have email)
+// requester is the person who's request is being accepted (have id)
 // requestee is the person accepting the request from pending (have id)
 // acttion: requestee accepting conection request from requester
 router.put('/connect', function(req, res, next) {
-    User.findOneAndUpdate({ email: req.body.requester_email }, { $push: { acceptedConnections: req.body.requestee_id } }, { 'new': true }).exec()
+    User.findByIdAndUpdate(req.body.requester_id, { $push: { acceptedConnections: req.body.requestee_id } }, { 'new': true }).exec()
         .then(function(user) {
             return User.findByIdAndUpdate(req.body.requestee_id, { $push: { acceptedConnections: user._id }, $pull: { pendingConnections: user._id } }, { 'new': true }).exec()
         })
@@ -170,14 +173,14 @@ router.put('/connect', function(req, res, next) {
         });
 });
 
-// requester is the person sending a conection request (have email)
+// requester is the person sending a conection request (have id)
 // requestee is the person the request is being sent to (have id)
 // acttion: requestee rejecting conection request from requester
 router.delete('/connect', function(req, res, next) {
     User.findByIdAndUpdate(req.body.requestee_id, { $pull: { pendingConnections: req.body.requester_id } }, { 'new': true }).exec()
         .then(function(user) {
             return res.status(200).json({
-                message: 'Request Sent!'
+                message: 'Request Denied!'
             });
         })
         .catch(function(err) {
