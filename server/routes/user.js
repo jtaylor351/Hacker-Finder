@@ -54,7 +54,8 @@ router.post('/login', function (req, res, next) {
                             university: user.university,
                             firstName: user.firstName,
                             lastName: user.lastName,
-                            bio: user.bio
+                            bio: user.bio,
+                            interestedHacks: user.interestedHacks
                         });
                     }
                     return res.status(401).json({
@@ -77,13 +78,22 @@ router.post('/login', function (req, res, next) {
         });
 });
 
-router.post('/interested-hackathons', function (req, res, next) {
 
-    // User.findOne({ email: email }).exec();
-    User.findOne({_id: req.body.requestee_id}).exec()
+router.post('/interested-hackathons', function (req, res, next) {
+    User.findByIdAndUpdate(req.body.userId, {$push: {interestedHacks: req.body.hackathonId}}, {'new': true}).exec()
     .then(function(user) {
-        //add to user's array of conections
-        User.update({_id: user.id}, {$set: {interestedHacks: user.interestedHacks.concat([{user_id: req.body.requester_id, accepted:false}])}});
+        return res.status(200).json({
+            message: 'Success',
+            email: user.email,
+            university: user.university,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            bio: user.bio,
+            interestedHacks: user.interestedHacks,
+            acceptedConnections: user.acceptedConnections,
+            pendingConnections: user.pendingConnections,
+            picture: user.picture
+        });
     })
     .catch(function(err) {
         return res.status(err.status).json({
@@ -93,36 +103,49 @@ router.post('/interested-hackathons', function (req, res, next) {
     });
 });
 
-router.put('/interested-hackathons', function (req, res, next) {
 
-    // User.findOne({ email: email }).exec();
-    User.findOne({ _id: req.body.requester_id }).exec()
-        .then(function (user) {
-            //add to user's array of conections
-            User.update({ _id: req.body.requester_id }, { $set: { interestedHacks: user.interestedHacks.concat([{ user_id: req.body.requestee_id, accepted: true}]) } });
+// requester is the person sending a conection request
+// requestee is the person the request is being sent to
+router.post('/connect', function (req, res, next) {
+    User.findByIdAndUpdate(req.body.requestee_id, {$push: {pendingConnections: req.body.requester_id}}, {'new': true}).exec()
+    .then(function(user) {
+        return res.status(200).json({
+            message: 'Request Sent!'
+        });
+    })
+    .catch(function(err) {
+        return res.status(err.status).json({
+            title: 'Problem on our end, please try again later',
+            error: { message: err.message }
+        });
+    });
+});
+
+// requester is the person who's request is being accepted
+// requestee is the person accepting the request from pending
+router.put('/connect', function (req, res, next) {
+    User.findByIdAndUpdate(req.body.requestee_id, {$push: {acceptedConnections: req.body.requester_id},
+        $pull: {pendingConnections: req.body.requester_id}}, {'new': true}).exec()
+    .then(function(requestee) {
+        User.findByIdAndUpdate(req.body.requester_id, {$push: {acceptedConnections: req.body.requestee_id}}, {'new': true}).exec()
+        .then(function(user) {
+            return res.status(200).json({
+                message: 'Connection Made!'
+            });
         })
-        .catch(function (err) {
+        .catch(function(err) {
             return res.status(err.status).json({
                 title: 'Problem on our end, please try again later',
                 error: { message: err.message }
             });
         });
-
-    // User.findOne({ email: email }).exec();
-    User.findOne({ _id: req.body.requestee_id }).exec()
-        .then(function (user) {
-            //add to user's array of conections
-            //For loop to change the requestee's array so that the accepted is true
-            // var i;
-            // for (i = 0; i < user.)
-            User.update({ _id: req.body.requester_id }, { $set: { interestedHacks: user.interestedHacks.concat([{ user_id: req.body.requestee_id, accepted: true }]) } });
-        })
-        .catch(function (err) {
-            return res.status(err.status).json({
-                title: 'Problem on our end, please try again later',
-                error: { message: err.message }
-            });
+    })
+    .catch(function(err) {
+        return res.status(err.status).json({
+            title: 'Problem on our end, please try again later',
+            error: { message: err.message }
         });
+    });
 });
 
 module.exports = router;

@@ -88,13 +88,13 @@ var UserSchema = new mongoose.Schema({
     },
     university: {
         type: String,
-        required: true,
+        default: "gatech",
         trim: true,
-        validator: universityValidator
+        // validator: universityValidator
     },
     bio: {
         type: String,
-        required: true,
+        default: "Lets get hackin",
         validator: bioValidator
     },
     acceptedConnections: [{
