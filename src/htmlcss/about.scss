@@ -1,0 +1,26 @@
+/*about scss page*/
+@import "variables";
+
+body {
+	display: flex;
+	justify-content: center;
+	align-item: center;
+	font-family: $main-font;
+	background-color: $grey;
+	height: 100%;
+	.about {
+		margin: 10px;
+		margin-top: 60px;
+		width: 800px;
+		height: 100%;
+		text-align: center;
+		background-color: white;
+		border: 1px solid $brown;
+		border-radius: 5px;
+		padding: 50px;
+		align-self: center;
+		p {
+			font-size: 18px;
+		}
+	}
+}

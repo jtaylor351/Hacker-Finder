@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,IAAK,CACJ,MAAM,CAAE,GAAG,CAEV,oBAAI,CACH,MAAM,CAAE,KAAK,CACb,KAAK,CAAE,KAAK",
+"sources": ["messages.scss"],
+"names": [],
+"file": "messages.css"
+}

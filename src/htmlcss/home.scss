@@ -39,7 +39,7 @@ body {
 	}
 	.about {
 		font-family: $main-font;
-		height: 60vh;
+		height: 500px;
 		background-color: $maroon;
 		display: flex;
 		justify-content: center;
@@ -49,13 +49,14 @@ body {
 			flex-direction: row;
 			justify-content: center;
 			align-content: center;
-			width: 80%;
+			width: 1200px;
 			//create an @media command here
 			.abt {
 				text-align: center;
 				margin: 40px;
 				padding: 20px;
-				width: 23%;
+				height: 300px;
+				width: 400px;
 				align-self: center;
 				border: 3px solid white;
 				border-radius: 5px;
@@ -66,8 +67,8 @@ body {
 				.abt-icon {
 					margin-top: 20px;
 					//border-radius: 50%;
-					height: 120px;
-					width: 120px;
+					height: 100px;
+					width: 100px;
 					margin-bottom: 20px;
 				}
 			}
