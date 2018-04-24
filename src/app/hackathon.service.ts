@@ -1,3 +1,4 @@
+import { json } from 'ng2-validation/dist/json';
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { User } from './auth/user.model';
@@ -74,7 +75,7 @@ export class HackathonService {
   }
 
   addGoing(hackathon: Hackathon) {
-    const body = JSON.stringify(hackathon);
+    const body = {hackathon: JSON.stringify(hackathon), userId: localStorage.getItem('userId')};
     const headers = new Headers({'Content-Type': 'application/json'});
     const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
     return this.http.post('http://localhost:3000/user/interested-hackathons' + token, body, {headers: headers})

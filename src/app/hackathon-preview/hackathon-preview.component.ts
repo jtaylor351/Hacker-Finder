@@ -1,3 +1,4 @@
+import { HackathonService } from '../hackathon.service';
 import { Hackathon } from '../hackathon/hackathon.model';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -8,13 +9,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HackathonPreviewComponent implements OnInit {
   @Input() hackathon: Hackathon;
-  constructor() { }
+  constructor(public hackathonService: HackathonService) { }
 
   ngOnInit() {
   }
 
   going(hackathon: Hackathon) {
-    
+    this.hackathonService.addGoing(hackathon)
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        error => console.error(error)
+      );
   }
 
 }
