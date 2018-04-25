@@ -8,14 +8,16 @@ var router = express.Router();
 
 
 router.post('/signup', function(req, res, next) {
-    // console.log(req.body);
+    console.log('signup');
+    console.log(req.body);
     var user = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         password: bcrypt.hashSync(req.body.password, 10),
         email: req.body.email,
         university: req.body.university,
-        bio: req.body.bio
+        bio: req.body.bio,
+        picture: req.body.picture
     });
 
     user.save(function(err, result) {

@@ -94,6 +94,7 @@ var UserSchema = new mongoose.Schema({
     },
     bio: {
         type: String,
+        required: true,
         default: "Lets get hackin",
         validator: bioValidator
     },
@@ -106,7 +107,7 @@ var UserSchema = new mongoose.Schema({
         ref: 'User'
     }],
     interestedHacks: [{
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Hackathon'
     }],
     picture: {

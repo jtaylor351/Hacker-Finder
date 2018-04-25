@@ -55,6 +55,7 @@ export class SignUpComponent implements OnInit {
       this.signupForm.value.password,
       this.signupForm.value.email,
       new Array,
+      new Array,
       this.signupForm.value.university,
       this.signupForm.value.picture,
       this.signupForm.value.bio
