@@ -15,7 +15,7 @@ export class HackathonPreviewComponent implements OnInit {
   }
 
   going(hackathon: Hackathon) {
-    this.hackathonService.addGoing(hackathon)
+    this.hackathonService.addGoing(hackathon, localStorage.getItem('userId'))
       .subscribe(
         data => {
           console.log(data);

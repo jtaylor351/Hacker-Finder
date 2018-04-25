@@ -16,8 +16,7 @@ export class HackathonService {
   getHackathon(url: string) {
         return this.http.get('http://localhost:3000' + url)
             .map((response: Response) => {
-                const hackathon = response.json().obj;
-                console.log(hackathon);
+                const hackathon = response.json().hackathon;
                 return hackathon;
             });
   }
@@ -29,11 +28,13 @@ export class HackathonService {
                 const hackathons = response.json().obj;
                 const transformedHackathons: Hackathon[] = [];
                 for (const x of hackathons) {
+                  console.log(x);
                   transformedHackathons.push(new Hackathon(
                     x.title, x.location, x.description,
-                    x.startDay, x.length, x.universityHost,
+                    x.startDate, x.endDate, x.universityHost,
                     x.universityPicture, x.hackathonUrl));
                 }
+                console.log(transformedHackathons);
                 this.hackathons = transformedHackathons;
                 return transformedHackathons;
             })
@@ -61,7 +62,7 @@ export class HackathonService {
     return this.http.get('http://localhost:3000/hackathon/interested-users',
     {params: {users: userIds}})
               .map((response: Response) => {
-              const users = response.json().obj;
+              const users = response.json().hackathon.users;
               const transformedGoingUsers: User[] = [];
               for (const x of users) {
                 transformedGoingUsers.push(new User(
@@ -74,14 +75,18 @@ export class HackathonService {
               .catch((error: Response) => Observable.throw(error.json()));
   }
 
-  addGoing(hackathon: Hackathon) {
-    const body = {hackathon: JSON.stringify(hackathon), userId: localStorage.getItem('userId')};
+  addGoing(hackathon: Hackathon, userId: String) {
+    const hack = JSON.stringify(hackathon);
+    const body = JSON.stringify({title: hackathon.title, userId: userId});
+    console.log(hackathon);
+    console.log(userId);
     const headers = new Headers({'Content-Type': 'application/json'});
     const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-    return this.http.post('http://localhost:3000/user/interested-hackathons' + token, body, {headers: headers})
+    return this.http.post('http://localhost:3000/user/interested-hackathons', body, {headers: headers})
       .map((response: Response) => {
                 response.json();
                 this.submissionSuccess = true;
+                console.log(response);
             })
             .catch((error: Response) => Observable.throw(error.json));
   }

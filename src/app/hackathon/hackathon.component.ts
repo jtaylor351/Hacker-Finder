@@ -14,15 +14,21 @@ export class HackathonComponent implements OnInit {
   newHackathon: Hackathon;
   loaded = false;
   goingUsers: User[];
-  constructor(public hackathonService: HackathonService, private router: Router) { }
+  constructor(public hackathonService: HackathonService, private router: Router) {}
+  new_url = this.router.url;
 
   ngOnInit() {
-    const new_url = this.router.url;
-    this.hackathonService.getHackathon(new_url)
-      .subscribe(res => { this.newHackathon = res; this.loaded = true; });
+    const promise = new Promise((resolve, reject) => {
+      console.log('doing first promise');
+      this.hackathonService.getHackathon(this.new_url)
+      .subscribe(res => { this.newHackathon = res; this.loaded = true; resolve(); });
+    }).then(() => {
+      console.log('doing then');
+      console.log(this);
+      this.hackathonService.getGoingUsers(this.newHackathon.users)
+      .subscribe((response) => { this.goingUsers = response;  this.loaded = true; return null; });
+    });
 
-    this.hackathonService.getGoingUsers(this.newHackathon.users)
-      .subscribe(res => { this.goingUsers = res; });
   }
 
   goToUrl(url: String) {

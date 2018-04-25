@@ -93,8 +93,8 @@ router.get('/interested-users', function(req, res, next) {
 });
 
 
-router.get('/:title/:date', function(req, res, next) {
-    Hackathon.findOne({ date: req.params.date, title: req.params.title }).exec()
+router.get('/:title', function(req, res, next) {
+    Hackathon.findOne({ title: req.params.title }).exec()
         .then(function(hack) {
             return res.status(200).json({
                 hackathon: hack

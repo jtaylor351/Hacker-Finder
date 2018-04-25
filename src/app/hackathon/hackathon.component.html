@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-
-<html>
-
 <head>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
-<body>
-
+<div *ngIf="newHackathon">
     <div class="hack-infocard">
         <div class="content">
             <div class="text-info">
                 <h1 class="xlarge" id="hack-name"> {{newHackathon.title}} </h1>
                 <h1 class="large" id="hack-school"> {{newHackathon.university}} </h1>
-                <!-- <h2 id="hack-location"> Hack Location </h2> -->
+                <h2 id="hack-location">{{newHackathon.location}} </h2>
                 <h2 id="hack-date"> {{newHackathon.startDate}} </h2>
             </div>
             <div class="img-info">
@@ -68,7 +63,17 @@
     <div class="people">
         <app-user-preview [goingUsers]='goingUsers'></app-user-preview>
     </div>
+</div>
 
-</body>
+<div *ngIf="!newHackathon && loaded">
+    <div align="center">
+        <h2>Hmmmm... I can't find anything here</h2>
+        <h2>Make sure your URL is correct</h2>
+        <a href="/">click here to go to the main page</a>
+    </div>
+</div>
 
-</html>
+<div *ngIf="!loaded">
+    <h1 align="center">loading...</h1>
+    <div>
+    </div>

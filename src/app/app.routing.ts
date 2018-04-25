@@ -11,7 +11,7 @@ import { Routes, RouterModule } from '@angular/router';
 const APP_ROUTES: Routes = [
     {path: '', component: LandingPageComponent, pathMatch: 'full'},
     {path: 'user/signup', component: SignUpComponent},
-    {path: 'hackathon/:hackathon/:date', component: HackathonComponent},
+    {path: 'hackathon/:hackathon', component: HackathonComponent},
     {path: 'user/login', component: LoginComponent},
     {path: 'about', component: AboutUsComponent},
     {path: 'home', component: HomeComponent}
