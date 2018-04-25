@@ -197,4 +197,22 @@ router.delete('/connect', function(req, res, next) {
         });
 });
 
+//get user who is logged in
+router.get('/get-logged-in-user', function(req, res, next) {
+    User.findOne({ _id: req.query.userId })
+        .exec(function(err, user) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(201).json({
+                message: 'Hackathons Retrieved',
+                obj: user
+
+            });
+        });
+
+});
 module.exports = router;

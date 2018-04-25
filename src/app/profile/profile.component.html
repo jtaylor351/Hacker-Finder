@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+</head>
+
+<body class="mt-5" *ngIf="user && loaded">
+    <div class="prof-connections">
+        <h3> My Connections </h3>
+    </div>
+    <div class="requests">
+        <h3> My Requests </h3>
+    </div>
+    <div class="prof-content">
+        <div id="propic">
+            <img src="">
+        </div>
+        <div class="prof-text">
+            <h1> {{user.firstName}} {{user.lastName}} </h1>
+            <h2> {{user.university}} </h2>
+            <p> {{user.bio}} </p>
+        </div>
+    </div>
+    <div class="prof-hacks">
+        <h3> My Hackathons </h3>
+        <app-interested-hackathon-preview [interestedHackathons]='interestedHackathons'></app-interested-hackathon-preview>
+    </div>
+</body>
+
+</html>

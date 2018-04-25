@@ -19,6 +19,7 @@ import { HackathonComponent } from './hackathon/hackathon.component';
 import { UserPreviewComponent } from './user-preview/user-preview.component';
 import { InterestedHackathonPreviewComponent } from './interested-hackathon-preview/interested-hackathon-preview.component';
 import { MessagesComponent } from './messages/messages.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MessagesComponent } from './messages/messages.component';
     HackathonComponent,
     UserPreviewComponent,
     InterestedHackathonPreviewComponent,
-    MessagesComponent
+    MessagesComponent,
+    ProfileComponent
   ],
   imports: [
     FormsModule,
