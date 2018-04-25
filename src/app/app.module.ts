@@ -20,6 +20,7 @@ import { UserPreviewComponent } from './user-preview/user-preview.component';
 import { InterestedHackathonPreviewComponent } from './interested-hackathon-preview/interested-hackathon-preview.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MyConnectionsComponent } from './my-connections/my-connections.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ProfileComponent } from './profile/profile.component';
     UserPreviewComponent,
     InterestedHackathonPreviewComponent,
     MessagesComponent,
-    ProfileComponent
+    ProfileComponent,
+    MyConnectionsComponent
   ],
   imports: [
     FormsModule,
