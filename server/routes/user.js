@@ -118,7 +118,6 @@ router.post('/interested-hackathons', function(req, res, next) {
 
 // populating the interestedHacks field
 router.get('/interested-hackathons', function(req, res, next) {
-    console.log(users);
     User.findOne({ _id: req.query.users }).populate('interestedHacks').exec()
         .then(function(user) {
             return res.status(200).json({

@@ -111,7 +111,8 @@ body .people {
 
 /*  */
 
-body .container .label {
+
+/* body .container .label {
     text-align: center
 }
 
@@ -168,7 +169,7 @@ body .container .filters .filter-set #drop1 {
 
 body .container .filters .filter-set #filt1:hover #drop1 {
     display: block
-}
+} */
 
 
 /*# sourceMappingURL=personList.css.map */

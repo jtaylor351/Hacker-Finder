@@ -19,12 +19,9 @@ export class HackathonComponent implements OnInit {
 
   ngOnInit() {
     const promise = new Promise((resolve, reject) => {
-      console.log('doing first promise');
       this.hackathonService.getHackathon(this.new_url)
       .subscribe(res => { this.newHackathon = res; this.loaded = true; resolve(); });
     }).then(() => {
-      console.log('doing then');
-      console.log(this);
       this.hackathonService.getGoingUsers(this.newHackathon.users)
       .subscribe((response) => { this.goingUsers = response;  this.loaded = true; return null; });
     });

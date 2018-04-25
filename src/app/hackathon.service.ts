@@ -1,6 +1,6 @@
 import { json } from 'ng2-validation/dist/json';
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response, URLSearchParams } from '@angular/http';
 import { User } from './auth/user.model';
 import { Observable } from 'rxjs/Rx';
 import { Hackathon } from './hackathon/hackathon.model';
@@ -41,10 +41,14 @@ export class HackathonService {
             .catch((error: Response) => Observable.throw(error.json()));
   }
 
-  getInterestedHackathons(userId: String) {
-    return this.http.get('http://localhost:3000/home')
+  getInterestedHackathons(userId: string) {
+    const params = new URLSearchParams();
+    params.append('users', userId);
+    return this.http.get('http://localhost:3000/user/interested-hackathons', {search: params})
             .map((response: Response) => {
-                const hackathons = response.json().obj;
+                console.log('you got here');
+                console.log(response.json());
+                const hackathons = response.json().interestedHacks;
                 const transformedHackathons: Hackathon[] = [];
                 for (const x of hackathons) {
                   transformedHackathons.push(new Hackathon(
@@ -58,12 +62,20 @@ export class HackathonService {
             .catch((error: Response) => Observable.throw(error.json()));
   }
 
-  getGoingUsers(userIds: String[]) {
+  getGoingUsers(userIds: string[]) {
+    const params = new URLSearchParams();
+    userIds.forEach(function(x) {
+      params.append('users', x);
+    });
     return this.http.get('http://localhost:3000/hackathon/interested-users',
-    {params: {users: userIds}})
+    {search: params})
               .map((response: Response) => {
-              const users = response.json().hackathon.users;
+              if (response.json().users == null) {
+                return [];
+              }
+              const users = response.json().users;
               const transformedGoingUsers: User[] = [];
+              console.log('almost transformed users');
               for (const x of users) {
                 transformedGoingUsers.push(new User(
                   x.firstName, x.lastName, x.password, x.email, x.connections,

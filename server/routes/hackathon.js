@@ -56,7 +56,14 @@ router.get('/interested-users', function(req, res, next) {
     var user_ids = [];
     var return_users = [];
 
-    req.body.users.forEach(function(element) {
+    if (req.query.users == null) {
+        return res.status(200).json({
+            message: 'No users',
+            users: null
+        });
+    }
+
+    (req.query.users).forEach(function(element) {
         user_ids.push(mongoose.Types.ObjectId(element));
     });
 
