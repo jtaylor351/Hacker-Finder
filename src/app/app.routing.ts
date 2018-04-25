@@ -1,3 +1,4 @@
+import { MessagesComponent } from './messages/messages.component';
 import { HackathonComponent } from './hackathon/hackathon.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -13,6 +14,7 @@ const APP_ROUTES: Routes = [
     {path: 'user/signup', component: SignUpComponent},
     {path: 'hackathon/:hackathon', component: HackathonComponent},
     {path: 'user/login', component: LoginComponent},
+    {path: 'home/messages', component: MessagesComponent},
     {path: 'about', component: AboutUsComponent},
     {path: 'home', component: HomeComponent}
 ];

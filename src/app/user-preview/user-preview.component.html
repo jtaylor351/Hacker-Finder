@@ -10,9 +10,9 @@
 
 <body>
 
-    <div class="person-info" *ngFor="let user of goingUsers">
+    <div class="person-info mb-3" *ngFor="let user of goingUsers">
         <div class="propic">
-            <img src="">
+            <img src="{{user.picture}}">
         </div>
         <div class="content">
             <h3 id="name"> {{user.firstName}} {{user.lastName}} </h3>

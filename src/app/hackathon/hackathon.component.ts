@@ -28,7 +28,8 @@ export class HackathonComponent implements OnInit {
 
   }
 
-  goToUrl(url: String) {
+  goToUrl(url: string) {
+    console.log(url);
     this.router.navigateByUrl('' + url);
   }
 

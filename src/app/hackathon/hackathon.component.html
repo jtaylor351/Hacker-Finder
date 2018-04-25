@@ -2,67 +2,35 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
+
 <div *ngIf="newHackathon">
-    <div class="hack-infocard">
-        <div class="content">
-            <div class="text-info">
-                <h1 class="xlarge" id="hack-name"> {{newHackathon.title}} </h1>
-                <h1 class="large" id="hack-school"> {{newHackathon.university}} </h1>
-                <h2 id="hack-location">{{newHackathon.location}} </h2>
-                <h2 id="hack-date"> {{newHackathon.startDate}} </h2>
-            </div>
-            <div class="img-info">
-                <img id="hack-img" src="{{newHackathon.picture}}">
-            </div>
-        </div>
-        <div class="blurb">
-            <p> {{newHackathon.description}} </p>
-        </div>
-        <div class="apply-btn">
-            <button id="apply" (click)="goToUrl(newHackathon.hackathonUrl)"> 
-		APPLY NOW! </button>
-        </div>
-    </div>
 
-    <div class="filter">
-        <div class="filter">
-            <div class="container">
-                <div class="label">
-                    <h3> FILTER</h3>
+    <body>
+        <div class="hack-infocard">
+            <div class="content">
+                <div class="text-info">
+                    <h1 class="xlarge" id="hack-name"> {{newHackathon.title}} </h1>
+                    <h1 class="large" id="hack-school"> {{newHackathon.university}} </h1>
+                    <h2 id="hack-location">{{newHackathon.location}} </h2>
+                    <h2 id="hack-date"> {{newHackathon.startDate | date}} </h2>
                 </div>
-                <div class="filters">
-                    <div class="filter-set">
-                        <button class="dropbtn" id="filt1">DISTANCE</button>
-                        <!-- <div class="dropdown-content" id="drop1">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div> -->
-                    </div>
-                    <div class="filter-set">
-                        <button class="dropbtn" id="filt2">TYPE</button>
-                        <!-- <div class="dropdown-content" id="drop2">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div> -->
-                    </div>
-                    <div class="filter-set">
-                        <button class="dropbtn" id="filt3">LENGTH</button>
-                        <!-- <div class="dropdown-content" id="drop3">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div> -->
-                    </div>
+                <div class="img-info">
+                    <img id="hack-img" src="{{newHackathon.universityPicture}}">
                 </div>
             </div>
-
+            <div class="blurb" id="blurb">
+                <p> {{newHackathon.description}} </p>
+            </div>
+            <div class="apply-btn">
+                <a class="button" id="apply" href="{{newHackathon.hackathonUrl}}">
+                    APPLY NOW! </a>
+            </div>
         </div>
-    </div>
-    <div class="people">
-        <app-user-preview [goingUsers]='goingUsers'></app-user-preview>
-    </div>
+
+        <div class="people">
+            <app-user-preview [goingUsers]='goingUsers'></app-user-preview>
+        </div>
+    </body>
 </div>
 
 <div *ngIf="!newHackathon && loaded">

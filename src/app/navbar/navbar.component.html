@@ -19,7 +19,7 @@
         </div>
         <div class="right-cont" *ngIf="isLoggedIn()">
             <button id="hack-btn" class="menu-btn" [routerLink]="['home/']"> HACKATHONS </button>
-            <button id="mess-btn" class="menu-btn" [routerLink]="['home/messages']"> MESSAGES </button>
+            <button id="mess-btn" class="menu-btn" [routerLink]="['home/messages/']"> MESSAGES </button>
             <button id="signout-btn" class="menu-btn" [routerLink]="['']" (click)="logout()"> LOG OUT </button>
             <button id="profile-btn" class="nav-btn" [routerLink]="['home/user/profile']"> MY PROFILE </button>
         </div>
